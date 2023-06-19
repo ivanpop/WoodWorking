@@ -1,0 +1,42 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.navbar-light .navbar-brand {
+    color: white;
+}
+
+.navbar-light .navbar-brand:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+.nav-item:hover {
+    text-decoration: underline;
+}
+
+.btn-primary {
+    background-color: #2baf2b;
+    border-color: #2baf2b;
+}
+
+.btn-primary:hover {
+    text-decoration: underline;
+    background-color: #2baf2b;
+    border-color: #2baf2b;
+}
