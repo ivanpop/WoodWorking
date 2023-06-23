@@ -1,8 +1,8 @@
-﻿using Homies.Models;
+﻿using WoodWorking.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Homies.Controllers
+namespace WoodWorking.Controllers
 {
     public class HomeController : Controller
     {

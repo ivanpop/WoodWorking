@@ -1,4 +1,4 @@
-namespace Homies.Models
+namespace WoodWorking.Models
 {
     public class ErrorViewModel
     {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace Homies.Data.Migrations
+namespace WoodWorking.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace Homies.Areas.Identity.Pages.Account
+namespace WoodWorking.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
