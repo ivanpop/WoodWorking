@@ -1,6 +1,8 @@
 using WoodWorking.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WoodWorking.Contracts;
+using WoodWorking.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 )
 .AddEntityFrameworkStores<WoodWorkingDbContext>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IMaterialService, MaterialService>();
 
 var app = builder.Build();
 
