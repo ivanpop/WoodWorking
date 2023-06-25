@@ -45,3 +45,18 @@ body {
     width: 23%;
     margin: 10px;
 }
+
+.btn-success {
+    background-color: #2baf2b;
+    border-color: #2baf2b;
+}
+
+.btn-success:hover {
+    background-color: white;
+    border-color: #2baf2b;
+    color: #2baf2b;
+}
+
+.card {
+    border: 1px solid #2baf2b;
+}
