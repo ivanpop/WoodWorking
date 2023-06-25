@@ -3,13 +3,15 @@
     ViewBag.Title = "Всички въведени материали";
 }
 
-<h2 class="text-center">@ViewBag.Title</h2>
+<h2 class="text-center">@ViewBag.Title: @Model.Count()</h2>
 <hr />
 
 <div class="text-center row">
     @foreach (var e in Model)
     {
-        <div class="card col-4" style="width: 20rem; ">
+        <div class="card col-4">
+            <img class="card-img-top" style="width: 100%; margin-top: 10px;"
+                 src="@e.ImageUrl" alt="Material Image" width="200" height="200">
             <div class="card-body">
                 <h5 class="card-title mt-1">@e.Name</h5>
                 <p class="mb-0"><span class="fw-bold">ANPF: </span>@e.ANPF</p>

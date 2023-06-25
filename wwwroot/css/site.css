@@ -40,3 +40,8 @@ body {
     background-color: #2baf2b;
     border-color: #2baf2b;
 }
+
+.col-4 {
+    width: 23%;
+    margin: 10px;
+}
