@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    const int projectDate = 2023;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -51,7 +55,12 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            @DateTime.Now.ToString("dd/MM/yyyy")г.
+            @projectDate
+            @if (projectDate != DateTime.UtcNow.Year)
+            {
+                @Html.Raw($" - {DateTime.UtcNow.Year}")
+            }
+             г.
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -35,11 +35,11 @@ body {
     border-color: #2baf2b;
 }
 
-.btn-primary:hover {
-    text-decoration: underline;
-    background-color: #2baf2b;
-    border-color: #2baf2b;
-}
+    .btn-primary:hover {
+        background-color: white;
+        background-color: #2baf2b;
+        border-color: #2baf2b;
+    }
 
 .col-4 {
     width: 23%;
@@ -51,12 +51,16 @@ body {
     border-color: #2baf2b;
 }
 
-.btn-success:hover {
-    background-color: white;
-    border-color: #2baf2b;
-    color: #2baf2b;
-}
+    .btn-success:hover, .btn-primary:hover {
+        background-color: white;
+        border-color: #2baf2b;
+        color: #2baf2b;
+    }
 
 .card {
     border: 1px solid #2baf2b;
+}
+
+.form-floating{
+    margin: 10px
 }
