@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using WoodWorking.Contracts;
 using WoodWorking.Data;
 using WoodWorking.Models;
@@ -37,23 +38,33 @@ namespace WoodWorking.Service
                     Name = m.Name,
                     ANPF = m.ANPF,
                     ImageUrl = m.ImageUrl,
-                    Price = m.Price,
+                    Price = m.Price.ToString()
+                        .Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                        .Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator),
                 }).FirstOrDefaultAsync();
         }
 
-        public async Task EditBookAsync(EditMaterialViewModel model, int id)
+        public async Task<bool> EditBookAsync(EditMaterialViewModel model, int id)
         {
             var material = await context.Materials.FindAsync(id);
-
-            if (material != null)
+                        
+            try
             {
+                model.Price = model.Price.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                model.Price = model.Price.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                material.Price = Convert.ToDecimal(model.Price);
                 material.Name = model.Name;
                 material.ANPF = model.ANPF;
-                material.Price = model.Price;
                 material.ImageUrl = model.ImageUrl;
 
                 await context.SaveChangesAsync();
+
+                return true;
             }
+            catch (Exception e)
+            {
+                return false;
+            }            
         }
     }
 }

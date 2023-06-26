@@ -6,7 +6,7 @@
 
         public string ANPF { get; set; } = null!;
 
-        public decimal Price { get; set; }
+        public string Price { get; set; } = null!;
 
         public string? ImageUrl { get; set; }
     }
