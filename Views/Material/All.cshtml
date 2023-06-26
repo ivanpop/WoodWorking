@@ -18,10 +18,9 @@
                 <p class="mb-0"><span class="fw-bold">Price: </span>@e.Price лв.</p>
             </div>
 
-            <a asp-controller="Event" asp-action="Details" asp-route-id="@e.Id" class="btn btn-success mb-2 w-100 p-3 fw-bold">Детайли</a>
             @if (User.Identity.Name == "admin" || User.Identity.Name == "editor")
             {
-                <a asp-controller="Event" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-success mb-2 w-100 p-3 fw-bold">Редактиране</a>
+                <a asp-controller="Material" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-success mb-2 w-100 p-3 fw-bold">Редактиране</a>
             }
             else
             {
