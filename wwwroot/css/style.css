@@ -12,8 +12,9 @@ header {
 }
 
 .form-label-add-edit {
-    margin-bottom: 0.5rem;
-    color: white;
+    margin-bottom: 1rem;
+    color: black;
+    font-weight: bold;
 }
 
 section, section > div > p > a, section > form > div > p > a {

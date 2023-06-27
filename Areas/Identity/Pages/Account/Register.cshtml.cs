@@ -34,17 +34,20 @@ namespace WoodWorking.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [StringLength(20, ErrorMessage = "{0}ът трябва да е поне {2} и най-много {1} символа.", MinimumLength = 5)]
+            [Required(ErrorMessage = "Полето с акаунтът е задължително.")]
+            [DataType(DataType.EmailAddress)]
+            [EmailAddress]
+            [StringLength(30, ErrorMessage = "{0}ът трябва да е поне {2} и най-много {1} символа.", MinimumLength = 5)]
             [Display(Name = "Акаунт")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(20, ErrorMessage = "{0}та трябва да е поне {2} и най-много {1} символа.", MinimumLength = 5)]
+            [Required(ErrorMessage = "Полето с паролата е задължително.")]
+            [StringLength(30, ErrorMessage = "{0}та трябва да е поне {2} и най-много {1} символа.", MinimumLength = 5)]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]
             public string Password { get; set; }
 
+            [Required(ErrorMessage = "Полето с паролата е задължително.")]
             [DataType(DataType.Password)]
             [Display(Name = "Потвърди парола")]
             [Compare("Password", ErrorMessage = "Въведените пароли не съвпадат.")]

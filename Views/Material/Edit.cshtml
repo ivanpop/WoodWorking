@@ -3,11 +3,6 @@
     ViewBag.Title = "Промяна на материал";
 }
 
-@if (ViewBag.Error != null)
-{
-     <p>alert("sdfsdf")</p>
-}
-
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
@@ -15,22 +10,26 @@
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <form asp-action="Edit" method="post">
             <div class="mb-3">
-                <label asp-for="@Model.Name" class="form-label-add-edit">Име</label>
+                <label asp-for="@Model.Name" class="form-label-add-edit">Име:</label>
                 <input asp-for="@Model.Name" class="form-control" aria-required="true" />
                 <span asp-validation-for="@Model.Name" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.ANPF" class="form-label-add-edit">ANPF</label>
+                <label asp-for="@Model.ANPF" class="form-label-add-edit">ANPF:</label>
                 <input asp-for="@Model.ANPF" class="form-control" aria-required="true" />
                 <span asp-validation-for="ANPF" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.Price" class="form-label-add-edit">Start</label>
+                <label asp-for="@Model.Price" class="form-label-add-edit">Цена:</label>
                 <input asp-for="@Model.Price" class="form-control" aria-required="true" />
                 <span asp-validation-for="@Model.Price" class="text-danger"></span>
+                @if (ViewBag.Error != null)
+                {
+                    <p class="error">Грешно въведена цена!</p>
+                }
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.ImageUrl" class="form-label-add-edit">Start</label>
+                <label asp-for="@Model.ImageUrl" class="form-label-add-edit">Линк към изображение:</label>
                 <textarea asp-for="@Model.ImageUrl" class="form-control" aria-required="true" rows="5"></textarea>
                 <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
             </div>
