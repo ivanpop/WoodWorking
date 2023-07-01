@@ -32,7 +32,7 @@ namespace WoodWorking.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, EditMaterialViewModel model)
+        public async Task<IActionResult> Edit(int id, AddEditMaterialViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -44,6 +44,29 @@ namespace WoodWorking.Controllers
                 ViewBag.Error = "error";
                 return View(model);
             }                
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddEditMaterialViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            bool result = await materialService.AddMaterialAsync(model);
+
+            if (!result)
+            {
+                ViewBag.Error = "error";
+                return View(model);
+            }
 
             return RedirectToAction(nameof(All));
         }

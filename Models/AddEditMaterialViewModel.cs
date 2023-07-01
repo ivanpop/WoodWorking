@@ -1,6 +1,6 @@
 ﻿namespace WoodWorking.Models
 {
-    public class EditMaterialViewModel
+    public class AddEditMaterialViewModel
     {
         public string Name { get; set; } = null!;
 

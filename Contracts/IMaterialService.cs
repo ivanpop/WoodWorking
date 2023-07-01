@@ -4,9 +4,12 @@ namespace WoodWorking.Contracts
 {
     public interface IMaterialService
     {
-        Task<bool> EditBookAsync(EditMaterialViewModel model, int id);
+        Task<bool> EditBookAsync(AddEditMaterialViewModel model, int id);
+
         Task<IEnumerable<AllMaterialsViewModel>> GetAllMaterialsAsync();
 
-        Task<EditMaterialViewModel> GetMaterialForEditAsync(int id);
+        Task<AddEditMaterialViewModel> GetMaterialForEditAsync(int id);
+
+        Task<bool> AddMaterialAsync(AddEditMaterialViewModel model);
     }
 }

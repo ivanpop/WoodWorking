@@ -2,6 +2,7 @@
 using System.Globalization;
 using WoodWorking.Contracts;
 using WoodWorking.Data;
+using WoodWorking.Data.Models;
 using WoodWorking.Models;
 
 namespace WoodWorking.Service
@@ -10,9 +11,9 @@ namespace WoodWorking.Service
     {
         private readonly WoodWorkingDbContext context;
 
-        public MaterialService(WoodWorkingDbContext context) 
+        public MaterialService(WoodWorkingDbContext context)
         {
-                this.context = context;
+            this.context = context;
         }
 
         public async Task<IEnumerable<AllMaterialsViewModel>> GetAllMaterialsAsync()
@@ -29,11 +30,11 @@ namespace WoodWorking.Service
                 }).ToListAsync();
         }
 
-        public async Task<EditMaterialViewModel?> GetMaterialForEditAsync(int id)
+        public async Task<AddEditMaterialViewModel?> GetMaterialForEditAsync(int id)
         {
             return await context.Materials
                 .Where(m => m.Id == id)
-                .Select(m => new EditMaterialViewModel
+                .Select(m => new AddEditMaterialViewModel
                 {
                     Name = m.Name,
                     ANPF = m.ANPF,
@@ -44,10 +45,10 @@ namespace WoodWorking.Service
                 }).FirstOrDefaultAsync();
         }
 
-        public async Task<bool> EditBookAsync(EditMaterialViewModel model, int id)
+        public async Task<bool> EditBookAsync(AddEditMaterialViewModel model, int id)
         {
             var material = await context.Materials.FindAsync(id);
-                        
+
             try
             {
                 model.Price = model.Price.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
@@ -64,7 +65,31 @@ namespace WoodWorking.Service
             catch (Exception e)
             {
                 return false;
-            }            
+            }
         }
-    }
+
+        public async Task<bool> AddMaterialAsync(AddEditMaterialViewModel model)
+        {
+            Material material = new Material();
+
+            try
+            {
+                model.Price = model.Price.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                model.Price = model.Price.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                material.Price = Convert.ToDecimal(model.Price);
+                material.Name = model.Name;
+                material.ANPF = model.ANPF;
+                material.ImageUrl = model.ImageUrl;
+
+                await context.Materials.AddAsync(material);
+                await context.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+    }    
 }
