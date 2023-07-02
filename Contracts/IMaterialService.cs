@@ -11,5 +11,7 @@ namespace WoodWorking.Contracts
         Task<AddEditMaterialViewModel> GetMaterialForEditAsync(int id);
 
         Task<bool> AddMaterialAsync(AddEditMaterialViewModel model);
+
+        Task DeleteMaterialAsync(int id);
     }
 }

@@ -70,5 +70,13 @@ namespace WoodWorking.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await materialService.DeleteMaterialAsync(id);
+
+            return RedirectToAction(nameof(All));
+        }
     }
 }

@@ -51,11 +51,17 @@ body {
     border-color: #2baf2b;
 }
 
-    .btn-success:hover, .btn-primary:hover {
-        background-color: white;
-        border-color: #2baf2b;
-        color: #2baf2b;
-    }
+.btn-success:hover, .btn-primary:hover {
+    background-color: white;
+    border-color: #2baf2b;
+    color: #2baf2b;
+}
+
+.btn-danger:hover {
+    background-color: white;
+    border-color: red;
+    color: red;
+}
 
 .card {
     border: 1px solid #2baf2b;
