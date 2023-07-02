@@ -77,7 +77,6 @@ namespace WoodWorking.Service
                 model.Price = model.Price.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
                 model.Price = model.Price.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
                 material.Price = Convert.ToDecimal(model.Price);
-                material.Price = Convert.ToDecimal(model.Price);
                 material.Name = model.Name;
                 material.ANPF = model.ANPF;
                 material.ImageUrl = model.ImageUrl;

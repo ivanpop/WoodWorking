@@ -17,6 +17,11 @@ namespace WoodWorking.Data
             modelBuilder.Entity<IdentityUserMaterial>().HasKey(x => new { x.StoreId, x.MaterialId });
             modelBuilder.Entity<Material>().Property(p => p.Price).HasPrecision(18, 2);
 
+            modelBuilder.Entity<IdentityUserEdge>().HasKey(x => new { x.StoreId, x.EdgeId });
+            modelBuilder.Entity<Edge>().Property(e => e.Price).HasPrecision(18, 2);
+            modelBuilder.Entity<Edge>().Property(e => e.Height).HasPrecision(18, 2);
+            modelBuilder.Entity<Edge>().Property(e => e.Length).HasPrecision(18, 2);
+
             modelBuilder
                 .Entity<Material>()
                 .HasData(new Material()
@@ -205,11 +210,47 @@ namespace WoodWorking.Data
                 }
             );
 
+               modelBuilder
+                .Entity<Edge>()
+                .HasData(new Edge()
+                {
+                    Id = 1,
+                    Height = 0.45m,
+                    Length = 0.45m,
+                    Price = 1.39m
+                },
+                new Edge()
+                {
+                    Id = 2,
+                    Height = 0.8m,
+                    Length = 0.8m,
+                    Price = 3.19m
+                },
+                new Edge()
+                {
+                    Id = 3,
+                    Height = 2m,
+                    Length = 2m,
+                    Price = 2.79m
+                },
+                new Edge()
+                {
+                    Id = 4,
+                    Height = 3m,
+                    Length = 3m,
+                    Price = 4.99m
+                }
+            );
+
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Material> Materials { get; set; }
 
         public DbSet<IdentityUserMaterial> IdentityUserMaterials { get; set; }
+
+        public DbSet<Edge> Edges { get; set; }
+
+        public DbSet<IdentityUserEdge> identityUserEdges { get; set; }
     }
 }
