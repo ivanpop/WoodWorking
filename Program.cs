@@ -25,7 +25,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IEdgesService, EdgesService>();
+builder.Services.AddScoped<IEdgeService, EdgeService>();
 
 var app = builder.Build();
 
