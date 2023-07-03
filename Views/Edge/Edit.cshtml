@@ -1,0 +1,40 @@
+﻿@model AddEditEdgeViewModel;
+@{
+    ViewBag.Title = "Промяна на кант";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form asp-action="Edit" method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.Height" class="form-label-add-edit">Височина:</label>
+                <input asp-for="@Model.Height" class="form-control" aria-required="true" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Length" class="form-label-add-edit">Широчина:</label>
+                <input asp-for="@Model.Length" class="form-control" aria-required="true" />
+                <span asp-validation-for="Length" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Price" class="form-label-add-edit">Цена:</label>
+                <input asp-for="@Model.Price" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.Price" class="text-danger"></span>
+                @if (ViewBag.Error != null)
+                {
+                    <p class="error">Грешно въведена цена!</p>
+                }
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-success mb-2 w-100 p-3 fw-bold" type="submit" value="Редактиране" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

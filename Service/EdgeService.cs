@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using WoodWorking.Contracts;
 using WoodWorking.Data;
 using WoodWorking.Models;
@@ -24,6 +25,26 @@ namespace WoodWorking.Service
                     Height = e.Height,
                     Price = e.Price
                 }).ToListAsync();
+        }
+
+        public async Task<AddEditEdgeViewModel?> GetEdgeForEditAsync(int id)
+        {
+            return await context.Edges
+                .Where(e => e.Id == id)
+                .Select(e => new AddEditEdgeViewModel
+                {
+                    Height = e.Height.ToString()
+                        .Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                        .Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator),
+
+                    Length = e.Length.ToString()
+                        .Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                        .Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator),
+
+                    Price = e.Price.ToString()
+                        .Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                        .Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
+                }).FirstOrDefaultAsync();
         }
     }
 }

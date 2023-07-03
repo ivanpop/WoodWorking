@@ -19,5 +19,16 @@ namespace WoodWorking.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var model = await edgeService.GetEdgeForEditAsync(id);
+
+            if (model == null)
+                return RedirectToAction(nameof(All));
+
+            return View(model);
+        }
     }
 }

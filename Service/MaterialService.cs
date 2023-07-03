@@ -45,7 +45,7 @@ namespace WoodWorking.Service
                 }).FirstOrDefaultAsync();
         }
 
-        public async Task<bool> EditBookAsync(AddEditMaterialViewModel model, int id)
+        public async Task<bool> EditMaterialAsync(AddEditMaterialViewModel model, int id)
         {
             var material = await context.Materials.FindAsync(id);
 

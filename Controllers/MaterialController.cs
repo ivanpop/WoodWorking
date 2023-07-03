@@ -37,7 +37,7 @@ namespace WoodWorking.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            bool result = await materialService.EditBookAsync(model, id);
+            bool result = await materialService.EditMaterialAsync(model, id);
 
             if (!result)
             { 
