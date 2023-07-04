@@ -4,6 +4,8 @@ namespace WoodWorking.Contracts
 {
     public interface IEdgeService
     {
+        Task<List<string>> AddEdgeAsync(AddEditEdgeViewModel model);
+
         Task<List<string>> EditEdgeAsync(AddEditEdgeViewModel model, int id);
 
         Task<IEnumerable<AllEdgesViewModel>> GetAllEdgesAsync();

@@ -44,7 +44,29 @@ namespace WoodWorking.Controllers
             {
                 ViewBag.Error = errorMessages;
                 return View(model);
+            }
 
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddEditEdgeViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var errorMessages = await edgeService.AddEdgeAsync(model);
+
+            if (errorMessages.Count != 0)
+            {
+                ViewBag.Error = errorMessages;
+                return View(model);
             }
 
             return RedirectToAction(nameof(All));

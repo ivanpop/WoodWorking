@@ -2,6 +2,7 @@
 using System.Globalization;
 using WoodWorking.Contracts;
 using WoodWorking.Data;
+using WoodWorking.Data.Models;
 using WoodWorking.Models;
 
 namespace WoodWorking.Service
@@ -61,7 +62,6 @@ namespace WoodWorking.Service
             }
             catch (Exception)
             {
-
                 errorMessages.Add("Грешна височина!");
             }
 
@@ -87,6 +87,56 @@ namespace WoodWorking.Service
             catch (Exception e)
             {
                 errorMessages.Add("Грешна цена!");
+            }
+
+            return errorMessages;
+        }
+
+        public async Task<List<string>> AddEdgeAsync(AddEditEdgeViewModel model)
+        {
+            Edge edge = new Edge();
+
+            List<string> errorMessages = new List<string>();
+
+            try
+            {
+                model.Height = model.Height.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                model.Height = model.Height.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                edge.Height = Convert.ToDecimal(model.Height);
+            }
+            catch (Exception)
+            {
+                errorMessages.Add("Грешна височина!");
+            }
+
+            try
+            {
+                model.Length = model.Length.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                model.Length = model.Length.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                edge.Length = Convert.ToDecimal(model.Length);
+            }
+            catch (Exception)
+            {
+                errorMessages.Add("Грешна широчина!");
+            }
+
+            try
+            {
+                model.Price = model.Price.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                model.Price = model.Price.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                edge.Price = Convert.ToDecimal(model.Price);
+
+                await context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                errorMessages.Add("Грешна цена!");
+            }
+
+            if (errorMessages.Count == 0) 
+            {
+                await context.Edges.AddAsync(edge);
+                await context.SaveChangesAsync();
             }
 
             return errorMessages;
