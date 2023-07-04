@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WoodWorking.Contracts;
+using WoodWorking.Models;
 using WoodWorking.Service;
 
 namespace WoodWorking.Controllers
@@ -29,6 +30,24 @@ namespace WoodWorking.Controllers
                 return RedirectToAction(nameof(All));
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, AddEditEdgeViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var errorMessages = await edgeService.EditEdgeAsync(model, id);
+
+            if (errorMessages.Count != 0)
+            {
+                ViewBag.Error = errorMessages;
+                return View(model);
+
+            }
+
+            return RedirectToAction(nameof(All));
         }
     }
 }

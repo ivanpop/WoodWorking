@@ -46,5 +46,50 @@ namespace WoodWorking.Service
                         .Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator)
                 }).FirstOrDefaultAsync();
         }
+
+        public async Task<List<string>> EditEdgeAsync(AddEditEdgeViewModel model, int id)
+        {
+            var material = await context.Edges.FindAsync(id);
+
+            List<string> errorMessages = new List<string>();
+
+            try
+            {
+                model.Height = model.Height.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                model.Height = model.Height.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                material.Height = Convert.ToDecimal(model.Height);
+            }
+            catch (Exception)
+            {
+
+                errorMessages.Add("Грешна височина!");
+            }
+
+            try
+            {
+                model.Length = model.Length.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                model.Length = model.Length.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                material.Length = Convert.ToDecimal(model.Length);
+            }
+            catch (Exception)
+            {
+                errorMessages.Add("Грешна широчина!");
+            }
+
+            try
+            {
+                model.Price = model.Price.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                model.Price = model.Price.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                material.Price = Convert.ToDecimal(model.Price);
+
+                await context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                errorMessages.Add("Грешна цена!");
+            }
+
+            return errorMessages;
+        }
     }
 }
