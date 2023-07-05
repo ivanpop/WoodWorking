@@ -26,24 +26,26 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Material" asp-action="All">Всички материали</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Edge" asp-action="All">Всички кантове</a>
-                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Material" asp-action="Add">Добавяне на материал</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Edge" asp-action="Add">Добавяне на кант</a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Event" asp-action="Joined">My Joined Events</a>
                             </li>
                         }
+                        <li class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">Материали</button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Material" asp-action="All">Всички материали</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Material" asp-action="Add">Добавяне на материал</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">Кантове</button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Edge" asp-action="All">Всички кантове</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Edge" asp-action="Add">Добавяне на кант</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

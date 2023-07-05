@@ -74,3 +74,18 @@ body {
 .error{
     color: red;
 }
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.btn-primary {
+    background-color: #2baf2b;
+    border-color: #2baf2b;
+}
+
+.btn-primary:focus {
+    background-color: white;
+    border-color: #2baf2b;
+    color: #2baf2b;
+}
