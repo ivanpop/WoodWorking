@@ -17,7 +17,7 @@
                 <p class="mb-0"><span class="fw-bold">Цена: </span>@e.Price лв.</p>
             </div>
 
-            @if (User.Identity.Name == "admins@mr-bricolage.bg" || User.Identity.Name == "editor")
+            @if (User.Identity.Name == "admins@mr-bricolage.bg" || User.Identity.Name == "editors@mr-bricolage.bg")
             {
                 <a asp-controller="Edge" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-success mb-2 w-100 p-3 fw-bold">Редактиране</a>
                 <a asp-controller="Edge" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold"

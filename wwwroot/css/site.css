@@ -89,3 +89,9 @@ body {
     border-color: #2baf2b;
     color: #2baf2b;
 }
+
+.dropdown-item:active {
+    background-color: white;
+    border-color: black;
+    color: black;
+}
