@@ -141,5 +141,15 @@ namespace WoodWorking.Service
 
             return errorMessages;
         }
+
+        public async Task DeleteMaterialAsync(int id)
+        {
+            var edge = await context.Edges.FindAsync(id);
+
+            if (edge != null)
+                context.Edges.Remove(edge);
+
+            await context.SaveChangesAsync();
+        }
     }
 }

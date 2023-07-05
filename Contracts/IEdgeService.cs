@@ -6,6 +6,8 @@ namespace WoodWorking.Contracts
     {
         Task<List<string>> AddEdgeAsync(AddEditEdgeViewModel model);
 
+        Task DeleteMaterialAsync(int id);
+
         Task<List<string>> EditEdgeAsync(AddEditEdgeViewModel model, int id);
 
         Task<IEnumerable<AllEdgesViewModel>> GetAllEdgesAsync();
