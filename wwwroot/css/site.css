@@ -8,6 +8,10 @@ html {
   }
 }
 
+h2 {
+    color: black
+}
+
 html {
   position: relative;
   min-height: 100%;

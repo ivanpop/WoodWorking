@@ -81,7 +81,7 @@ namespace WoodWorking.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Грешен опит за логване.");
                     return Page();
                 }
             }

@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WoodWorking.Contracts;
 using WoodWorking.Models;
-using WoodWorking.Service;
 
 namespace WoodWorking.Controllers
 {
+    [Authorize]
     public class EdgeController : Controller
     {
         private readonly IEdgeService edgeService;
@@ -14,6 +15,7 @@ namespace WoodWorking.Controllers
             this.edgeService = edgeService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> All()
         {
             var model = await edgeService.GetAllEdgesAsync();

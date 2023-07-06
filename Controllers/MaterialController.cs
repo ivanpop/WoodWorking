@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WoodWorking.Contracts;
 using WoodWorking.Models;
 
 namespace WoodWorking.Controllers
 {
+    [Authorize]
     public class MaterialController : Controller
     {
         private readonly IMaterialService materialService;
@@ -13,6 +15,7 @@ namespace WoodWorking.Controllers
             this.materialService = materialService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> All()
         {
             var model = await materialService.GetAllMaterialsAsync();
