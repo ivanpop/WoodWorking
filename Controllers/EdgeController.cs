@@ -87,16 +87,25 @@ namespace WoodWorking.Controllers
 
         public async Task<IActionResult> AddtoCollection(int id)
         {
-            var book = await edgeService.GetEdgeByIdAsync(id);
+            var edge = await edgeService.GetEdgeByIdAsync(id);
 
-            if (book == null)
+            if (edge == null)
                 return RedirectToAction(nameof(All));
 
             var userId = userService.GetUserId();
 
-            await edgeService.AddEdgeToCollectionAsync(userId, book);
+            await edgeService.AddEdgeToCollectionAsync(userId, edge);
 
             return RedirectToAction(nameof(All));
+        }
+
+        public async Task<IActionResult> Joined()
+        {
+            var userId = userService.GetUserId();
+
+            var model = await edgeService.GetJoinedEdges(userId);
+
+            return View(model);
         }
     }
 }

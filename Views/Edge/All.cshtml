@@ -19,6 +19,7 @@
 
             @if (User.Identity.Name == "admins@mr-bricolage.bg" || User.Identity.Name == "editors@mr-bricolage.bg")
             {
+                <a asp-controller="Edge" asp-action="AddtoCollection" asp-route-id="@e.Id" class="btn btn-success mb-2 w-100 p-3 fw-bold">Добавяне в списък</a>
                 <a asp-controller="Edge" asp-action="Edit" asp-route-id="@e.Id" class="btn btn-success mb-2 w-100 p-3 fw-bold">Редактиране</a>
                 <a asp-controller="Edge" asp-action="Delete" asp-route-id="@e.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold"
                     onclick="return confirm('Сигурни ли сте че искате да изтриете кант: @e.Height')">Изтриване</a>

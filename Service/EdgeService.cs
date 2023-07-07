@@ -180,7 +180,30 @@ namespace WoodWorking.Service
 
                 await context.identityUserEdges.AddAsync(userEdge);
                 await context.SaveChangesAsync();
+
             }
         }
+
+        public async Task<AddEditEdgeViewModel?> GetJoinedEdges(string userId)
+        {
+            var joinedEdges = await context.identityUserEdges
+                        .Where(u => u.StoreId == userId)
+                        .ToListAsync();
+
+            //return await context.Edges
+            //        .Where(e => e.Id == joinedEdges.con)
+            //        .Select(e => new AddEditEdgeViewModel
+            //        {
+            //            Id = e.Id,
+            //            Height = e.Height.ToString(),
+            //            Length = e.Length.ToString(),
+            //            Price = e.Price.ToString()
+            //        }).FirstOrDefaultAsync();
+
+            Console.WriteLine("");
+
+            return null;
+        }
+
     }
 }
