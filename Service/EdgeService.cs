@@ -151,5 +151,36 @@ namespace WoodWorking.Service
 
             await context.SaveChangesAsync();
         }
+
+        public async Task<AddEditEdgeViewModel?> GetEdgeByIdAsync(int id)
+        {
+            return await context.Edges
+                    .Where(e => e.Id == id)
+                    .Select(e => new AddEditEdgeViewModel
+                    {
+                        Id = e.Id,
+                        Height = e.Height.ToString(),
+                        Length = e.Length.ToString(),
+                        Price = e.Price.ToString()
+                    }).FirstOrDefaultAsync();
+        }
+
+        public async Task AddEdgeToCollectionAsync(string storeId, AddEditEdgeViewModel edge)
+        {
+            bool allreadyAdded = await context.identityUserEdges
+                            .AnyAsync(ub => ub.StoreId == storeId && ub.EdgeId == edge.Id);
+
+            if (!allreadyAdded)
+            {
+                var userEdge = new IdentityUserEdge
+                {
+                    StoreId = storeId,
+                    EdgeId = edge.Id
+                };
+
+                await context.identityUserEdges.AddAsync(userEdge);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

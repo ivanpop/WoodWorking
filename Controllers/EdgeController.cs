@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Library.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WoodWorking.Contracts;
 using WoodWorking.Models;
@@ -9,10 +10,12 @@ namespace WoodWorking.Controllers
     public class EdgeController : Controller
     {
         private readonly IEdgeService edgeService;
+        private readonly IUserService userService;
 
-        public EdgeController(IEdgeService edgeService)
+        public EdgeController(IEdgeService edgeService, IUserService userService)
         {
             this.edgeService = edgeService;
+            this.userService = userService;
         }
 
         [AllowAnonymous]
@@ -78,6 +81,20 @@ namespace WoodWorking.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await edgeService.DeleteMaterialAsync(id);
+
+            return RedirectToAction(nameof(All));
+        }
+
+        public async Task<IActionResult> AddtoCollection(int id)
+        {
+            var book = await edgeService.GetEdgeByIdAsync(id);
+
+            if (book == null)
+                return RedirectToAction(nameof(All));
+
+            var userId = userService.GetUserId();
+
+            await edgeService.AddEdgeToCollectionAsync(userId, book);
 
             return RedirectToAction(nameof(All));
         }
