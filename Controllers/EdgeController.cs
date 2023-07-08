@@ -96,14 +96,14 @@ namespace WoodWorking.Controllers
 
             await edgeService.AddEdgeToCollectionAsync(userId, edge);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(Joined));
         }
 
         public async Task<IActionResult> Joined()
         {
             var userId = userService.GetUserId();
 
-            var model = await edgeService.GetJoinedEdges(userId);
+            var model = await edgeService.GetAddedEdges(userId);
 
             return View(model);
         }
