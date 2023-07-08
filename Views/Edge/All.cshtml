@@ -7,6 +7,11 @@
 <hr />
 
 <div class="text-center row">
+    @if (ViewBag.Message != null)
+    {
+        <p class="error">@ViewBag.Message</p>
+    }
+
     @foreach (var e in Model)
     {
         <div class="card col-4">

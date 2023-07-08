@@ -165,7 +165,7 @@ namespace WoodWorking.Service
                     }).FirstOrDefaultAsync();
         }
 
-        public async Task AddEdgeToCollectionAsync(string storeId, AddEditEdgeViewModel edge)
+        public async Task<bool> AddEdgeToCollectionAsync(string storeId, AddEditEdgeViewModel edge)
         {
             bool allreadyAdded = await context.identityUserEdges
                             .AnyAsync(ub => ub.StoreId == storeId && ub.EdgeId == edge.Id);
@@ -180,7 +180,11 @@ namespace WoodWorking.Service
 
                 await context.identityUserEdges.AddAsync(userEdge);
                 await context.SaveChangesAsync();
+
+                return true;
             }
+
+            return false;
         }
 
         public async Task<IEnumerable<AllEdgesViewModel?>> GetAddedEdges(string userId)

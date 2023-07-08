@@ -19,9 +19,11 @@ namespace WoodWorking.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(string message)
         {
             var model = await edgeService.GetAllEdgesAsync();
+
+            ViewBag.Message = message;
 
             return View(model);
         }
@@ -94,9 +96,15 @@ namespace WoodWorking.Controllers
 
             var userId = userService.GetUserId();
 
-            await edgeService.AddEdgeToCollectionAsync(userId, edge);
+            var isSuccesfull = await edgeService.AddEdgeToCollectionAsync(userId, edge);
 
-            return RedirectToAction(nameof(Joined));
+            if (isSuccesfull)
+                return RedirectToAction(nameof(Joined));
+
+            else
+            {
+                return (RedirectToAction("All", new { message = "Този кант вече е селектиран!" }));
+            }
         }
 
         public async Task<IActionResult> Joined()
