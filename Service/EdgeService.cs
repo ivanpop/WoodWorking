@@ -167,18 +167,18 @@ namespace WoodWorking.Service
 
         public async Task<bool> AddEdgeToCollectionAsync(string storeId, AddEditEdgeViewModel edge)
         {
-            bool allreadyAdded = await context.identityUserEdges
-                            .AnyAsync(ub => ub.StoreId == storeId && ub.EdgeId == edge.Id);
+            bool allreadyAdded = await context.IdentityUserEdges
+                            .AnyAsync(ub => ub.UserId == storeId && ub.EdgeId == edge.Id);
 
             if (!allreadyAdded)
             {
                 var userEdge = new IdentityUserEdge
                 {
-                    StoreId = storeId,
+                    UserId = storeId,
                     EdgeId = edge.Id
                 };
 
-                await context.identityUserEdges.AddAsync(userEdge);
+                await context.IdentityUserEdges.AddAsync(userEdge);
                 await context.SaveChangesAsync();
 
                 return true;
@@ -189,8 +189,8 @@ namespace WoodWorking.Service
 
         public async Task<IEnumerable<AllEdgesViewModel?>> GetAddedEdges(string userId)
         {
-            return await context.identityUserEdges
-                .Where(ue => ue.StoreId == userId)
+            return await context.IdentityUserEdges
+                .Where(ue => ue.UserId == userId)
                 .Select(edge => new AllEdgesViewModel
                 {
                     Id = edge.Edge.Id,
@@ -202,12 +202,12 @@ namespace WoodWorking.Service
 
         public async Task RemoveEdgeFromCollectionAsync(string userId, AddEditEdgeViewModel edge)
         {
-            var userEdge = await context.identityUserEdges
-                                .FirstOrDefaultAsync(ue => ue.StoreId == userId && ue.EdgeId == edge.Id);
+            var userEdge = await context.IdentityUserEdges
+                                .FirstOrDefaultAsync(ue => ue.UserId == userId && ue.EdgeId == edge.Id);
 
             if (userEdge != null)
             {
-                context.identityUserEdges.Remove(userEdge);
+                context.IdentityUserEdges.Remove(userEdge);
                 await context.SaveChangesAsync();
             }
         }

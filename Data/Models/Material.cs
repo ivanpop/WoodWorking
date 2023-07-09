@@ -18,6 +18,6 @@ namespace WoodWorking.Data.Models
 
         public string? ImageUrl { get; set; }
 
-        public IEnumerable<IdentityUserMaterial> UserMaterials = new List<IdentityUserMaterial>();
+        public IEnumerable<IdentityUserOrder> UserMaterials = new List<IdentityUserOrder>();
     }
 }

@@ -7,10 +7,10 @@ namespace WoodWorking.Data.Models
     public class IdentityUserEdge
     {
         [Required]
-        public string StoreId { get; set; } = null!;
+        public string UserId { get; set; } = null!;
 
-        [ForeignKey(nameof(StoreId))]
-        public IdentityUser Store { get; set; } = null!;
+        [ForeignKey(nameof(UserId))]
+        public IdentityUser User { get; set; } = null!;
 
         [Required]
         public int EdgeId { get; set; }
