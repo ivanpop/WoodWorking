@@ -26,6 +26,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IEdgeService, EdgeService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 var app = builder.Build();
 

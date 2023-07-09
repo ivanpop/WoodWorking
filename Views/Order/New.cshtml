@@ -1,0 +1,782 @@
+﻿@model WoodWorking.Data.Models.Order
+
+@{
+    ViewData["Title"] = "Нова поръчка";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add" method="post">
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsExpress" /> @Html.DisplayNameFor(model => model.IsExpress)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaterialPrice" class="control-label"></label>
+                <input asp-for="MaterialPrice" class="form-control" />
+                <span asp-validation-for="MaterialPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EdgePrice" class="control-label"></label>
+                <input asp-for="EdgePrice" class="form-control" />
+                <span asp-validation-for="EdgePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPrice" class="control-label"></label>
+                <input asp-for="TotalPrice" class="form-control" />
+                <span asp-validation-for="TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientName" class="control-label"></label>
+                <input asp-for="ClientName" class="form-control" />
+                <span asp-validation-for="ClientName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientPhone" class="control-label"></label>
+                <input asp-for="ClientPhone" class="form-control" />
+                <span asp-validation-for="ClientPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1Name" class="control-label"></label>
+                <input asp-for="Material1Name" class="form-control" />
+                <span asp-validation-for="Material1Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1Price" class="control-label"></label>
+                <input asp-for="Material1Price" class="form-control" />
+                <span asp-validation-for="Material1Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1Length" class="control-label"></label>
+                <input asp-for="Material1Length" class="form-control" />
+                <span asp-validation-for="Material1Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1Height" class="control-label"></label>
+                <input asp-for="Material1Height" class="form-control" />
+                <span asp-validation-for="Material1Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1Qty" class="control-label"></label>
+                <input asp-for="Material1Qty" class="form-control" />
+                <span asp-validation-for="Material1Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1Quadrature" class="control-label"></label>
+                <input asp-for="Material1Quadrature" class="form-control" />
+                <span asp-validation-for="Material1Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1TotalPrice" class="control-label"></label>
+                <input asp-for="Material1TotalPrice" class="form-control" />
+                <span asp-validation-for="Material1TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1EdgeH1" class="control-label"></label>
+                <input asp-for="Material1EdgeH1" class="form-control" />
+                <span asp-validation-for="Material1EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1EdgeH2" class="control-label"></label>
+                <input asp-for="Material1EdgeH2" class="form-control" />
+                <span asp-validation-for="Material1EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1EdgeL1" class="control-label"></label>
+                <input asp-for="Material1EdgeL1" class="form-control" />
+                <span asp-validation-for="Material1EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1EdgeL2" class="control-label"></label>
+                <input asp-for="Material1EdgeL2" class="form-control" />
+                <span asp-validation-for="Material1EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material1EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material1EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material1EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2Name" class="control-label"></label>
+                <input asp-for="Material2Name" class="form-control" />
+                <span asp-validation-for="Material2Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2Price" class="control-label"></label>
+                <input asp-for="Material2Price" class="form-control" />
+                <span asp-validation-for="Material2Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2Length" class="control-label"></label>
+                <input asp-for="Material2Length" class="form-control" />
+                <span asp-validation-for="Material2Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2Height" class="control-label"></label>
+                <input asp-for="Material2Height" class="form-control" />
+                <span asp-validation-for="Material2Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2Qty" class="control-label"></label>
+                <input asp-for="Material2Qty" class="form-control" />
+                <span asp-validation-for="Material2Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2Quadrature" class="control-label"></label>
+                <input asp-for="Material2Quadrature" class="form-control" />
+                <span asp-validation-for="Material2Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2TotalPrice" class="control-label"></label>
+                <input asp-for="Material2TotalPrice" class="form-control" />
+                <span asp-validation-for="Material2TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2EdgeH1" class="control-label"></label>
+                <input asp-for="Material2EdgeH1" class="form-control" />
+                <span asp-validation-for="Material2EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2EdgeH2" class="control-label"></label>
+                <input asp-for="Material2EdgeH2" class="form-control" />
+                <span asp-validation-for="Material2EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2EdgeL1" class="control-label"></label>
+                <input asp-for="Material2EdgeL1" class="form-control" />
+                <span asp-validation-for="Material2EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2EdgeL2" class="control-label"></label>
+                <input asp-for="Material2EdgeL2" class="form-control" />
+                <span asp-validation-for="Material2EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material2EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material2EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material2EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3Name" class="control-label"></label>
+                <input asp-for="Material3Name" class="form-control" />
+                <span asp-validation-for="Material3Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3Price" class="control-label"></label>
+                <input asp-for="Material3Price" class="form-control" />
+                <span asp-validation-for="Material3Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3Length" class="control-label"></label>
+                <input asp-for="Material3Length" class="form-control" />
+                <span asp-validation-for="Material3Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3Height" class="control-label"></label>
+                <input asp-for="Material3Height" class="form-control" />
+                <span asp-validation-for="Material3Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3Qty" class="control-label"></label>
+                <input asp-for="Material3Qty" class="form-control" />
+                <span asp-validation-for="Material3Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3Quadrature" class="control-label"></label>
+                <input asp-for="Material3Quadrature" class="form-control" />
+                <span asp-validation-for="Material3Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3TotalPrice" class="control-label"></label>
+                <input asp-for="Material3TotalPrice" class="form-control" />
+                <span asp-validation-for="Material3TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3EdgeH1" class="control-label"></label>
+                <input asp-for="Material3EdgeH1" class="form-control" />
+                <span asp-validation-for="Material3EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3EdgeH2" class="control-label"></label>
+                <input asp-for="Material3EdgeH2" class="form-control" />
+                <span asp-validation-for="Material3EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3EdgeL1" class="control-label"></label>
+                <input asp-for="Material3EdgeL1" class="form-control" />
+                <span asp-validation-for="Material3EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3EdgeL2" class="control-label"></label>
+                <input asp-for="Material3EdgeL2" class="form-control" />
+                <span asp-validation-for="Material3EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material3EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material3EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material3EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4Name" class="control-label"></label>
+                <input asp-for="Material4Name" class="form-control" />
+                <span asp-validation-for="Material4Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4Price" class="control-label"></label>
+                <input asp-for="Material4Price" class="form-control" />
+                <span asp-validation-for="Material4Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4Length" class="control-label"></label>
+                <input asp-for="Material4Length" class="form-control" />
+                <span asp-validation-for="Material4Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4Height" class="control-label"></label>
+                <input asp-for="Material4Height" class="form-control" />
+                <span asp-validation-for="Material4Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4Qty" class="control-label"></label>
+                <input asp-for="Material4Qty" class="form-control" />
+                <span asp-validation-for="Material4Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4Quadrature" class="control-label"></label>
+                <input asp-for="Material4Quadrature" class="form-control" />
+                <span asp-validation-for="Material4Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4TotalPrice" class="control-label"></label>
+                <input asp-for="Material4TotalPrice" class="form-control" />
+                <span asp-validation-for="Material4TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4EdgeH1" class="control-label"></label>
+                <input asp-for="Material4EdgeH1" class="form-control" />
+                <span asp-validation-for="Material4EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4EdgeH2" class="control-label"></label>
+                <input asp-for="Material4EdgeH2" class="form-control" />
+                <span asp-validation-for="Material4EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4EdgeL1" class="control-label"></label>
+                <input asp-for="Material4EdgeL1" class="form-control" />
+                <span asp-validation-for="Material4EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4EdgeL2" class="control-label"></label>
+                <input asp-for="Material4EdgeL2" class="form-control" />
+                <span asp-validation-for="Material4EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material4EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material4EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material4EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5Name" class="control-label"></label>
+                <input asp-for="Material5Name" class="form-control" />
+                <span asp-validation-for="Material5Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5Price" class="control-label"></label>
+                <input asp-for="Material5Price" class="form-control" />
+                <span asp-validation-for="Material5Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5Length" class="control-label"></label>
+                <input asp-for="Material5Length" class="form-control" />
+                <span asp-validation-for="Material5Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5Height" class="control-label"></label>
+                <input asp-for="Material5Height" class="form-control" />
+                <span asp-validation-for="Material5Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5Qty" class="control-label"></label>
+                <input asp-for="Material5Qty" class="form-control" />
+                <span asp-validation-for="Material5Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5Quadrature" class="control-label"></label>
+                <input asp-for="Material5Quadrature" class="form-control" />
+                <span asp-validation-for="Material5Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5TotalPrice" class="control-label"></label>
+                <input asp-for="Material5TotalPrice" class="form-control" />
+                <span asp-validation-for="Material5TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5EdgeH1" class="control-label"></label>
+                <input asp-for="Material5EdgeH1" class="form-control" />
+                <span asp-validation-for="Material5EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5EdgeH2" class="control-label"></label>
+                <input asp-for="Material5EdgeH2" class="form-control" />
+                <span asp-validation-for="Material5EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5EdgeL1" class="control-label"></label>
+                <input asp-for="Material5EdgeL1" class="form-control" />
+                <span asp-validation-for="Material5EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5EdgeL2" class="control-label"></label>
+                <input asp-for="Material5EdgeL2" class="form-control" />
+                <span asp-validation-for="Material5EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material5EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material5EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material5EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6Name" class="control-label"></label>
+                <input asp-for="Material6Name" class="form-control" />
+                <span asp-validation-for="Material6Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6Price" class="control-label"></label>
+                <input asp-for="Material6Price" class="form-control" />
+                <span asp-validation-for="Material6Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6Length" class="control-label"></label>
+                <input asp-for="Material6Length" class="form-control" />
+                <span asp-validation-for="Material6Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6Height" class="control-label"></label>
+                <input asp-for="Material6Height" class="form-control" />
+                <span asp-validation-for="Material6Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6Qty" class="control-label"></label>
+                <input asp-for="Material6Qty" class="form-control" />
+                <span asp-validation-for="Material6Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6Quadrature" class="control-label"></label>
+                <input asp-for="Material6Quadrature" class="form-control" />
+                <span asp-validation-for="Material6Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6TotalPrice" class="control-label"></label>
+                <input asp-for="Material6TotalPrice" class="form-control" />
+                <span asp-validation-for="Material6TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6EdgeH1" class="control-label"></label>
+                <input asp-for="Material6EdgeH1" class="form-control" />
+                <span asp-validation-for="Material6EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6EdgeH2" class="control-label"></label>
+                <input asp-for="Material6EdgeH2" class="form-control" />
+                <span asp-validation-for="Material6EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6EdgeL1" class="control-label"></label>
+                <input asp-for="Material6EdgeL1" class="form-control" />
+                <span asp-validation-for="Material6EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6EdgeL2" class="control-label"></label>
+                <input asp-for="Material6EdgeL2" class="form-control" />
+                <span asp-validation-for="Material6EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material6EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material6EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material6EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7Name" class="control-label"></label>
+                <input asp-for="Material7Name" class="form-control" />
+                <span asp-validation-for="Material7Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7Price" class="control-label"></label>
+                <input asp-for="Material7Price" class="form-control" />
+                <span asp-validation-for="Material7Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7Length" class="control-label"></label>
+                <input asp-for="Material7Length" class="form-control" />
+                <span asp-validation-for="Material7Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7Height" class="control-label"></label>
+                <input asp-for="Material7Height" class="form-control" />
+                <span asp-validation-for="Material7Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7Qty" class="control-label"></label>
+                <input asp-for="Material7Qty" class="form-control" />
+                <span asp-validation-for="Material7Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7Quadrature" class="control-label"></label>
+                <input asp-for="Material7Quadrature" class="form-control" />
+                <span asp-validation-for="Material7Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7TotalPrice" class="control-label"></label>
+                <input asp-for="Material7TotalPrice" class="form-control" />
+                <span asp-validation-for="Material7TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7EdgeH1" class="control-label"></label>
+                <input asp-for="Material7EdgeH1" class="form-control" />
+                <span asp-validation-for="Material7EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7EdgeH2" class="control-label"></label>
+                <input asp-for="Material7EdgeH2" class="form-control" />
+                <span asp-validation-for="Material7EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7EdgeL1" class="control-label"></label>
+                <input asp-for="Material7EdgeL1" class="form-control" />
+                <span asp-validation-for="Material7EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7EdgeL2" class="control-label"></label>
+                <input asp-for="Material7EdgeL2" class="form-control" />
+                <span asp-validation-for="Material7EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material7EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material7EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material7EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8Name" class="control-label"></label>
+                <input asp-for="Material8Name" class="form-control" />
+                <span asp-validation-for="Material8Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8Price" class="control-label"></label>
+                <input asp-for="Material8Price" class="form-control" />
+                <span asp-validation-for="Material8Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8Length" class="control-label"></label>
+                <input asp-for="Material8Length" class="form-control" />
+                <span asp-validation-for="Material8Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8Height" class="control-label"></label>
+                <input asp-for="Material8Height" class="form-control" />
+                <span asp-validation-for="Material8Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8Qty" class="control-label"></label>
+                <input asp-for="Material8Qty" class="form-control" />
+                <span asp-validation-for="Material8Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8Quadrature" class="control-label"></label>
+                <input asp-for="Material8Quadrature" class="form-control" />
+                <span asp-validation-for="Material8Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8TotalPrice" class="control-label"></label>
+                <input asp-for="Material8TotalPrice" class="form-control" />
+                <span asp-validation-for="Material8TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8EdgeH1" class="control-label"></label>
+                <input asp-for="Material8EdgeH1" class="form-control" />
+                <span asp-validation-for="Material8EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8EdgeH2" class="control-label"></label>
+                <input asp-for="Material8EdgeH2" class="form-control" />
+                <span asp-validation-for="Material8EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8EdgeL1" class="control-label"></label>
+                <input asp-for="Material8EdgeL1" class="form-control" />
+                <span asp-validation-for="Material8EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8EdgeL2" class="control-label"></label>
+                <input asp-for="Material8EdgeL2" class="form-control" />
+                <span asp-validation-for="Material8EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material8EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material8EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material8EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9Name" class="control-label"></label>
+                <input asp-for="Material9Name" class="form-control" />
+                <span asp-validation-for="Material9Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9Price" class="control-label"></label>
+                <input asp-for="Material9Price" class="form-control" />
+                <span asp-validation-for="Material9Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9Length" class="control-label"></label>
+                <input asp-for="Material9Length" class="form-control" />
+                <span asp-validation-for="Material9Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9Height" class="control-label"></label>
+                <input asp-for="Material9Height" class="form-control" />
+                <span asp-validation-for="Material9Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9Qty" class="control-label"></label>
+                <input asp-for="Material9Qty" class="form-control" />
+                <span asp-validation-for="Material9Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9Quadrature" class="control-label"></label>
+                <input asp-for="Material9Quadrature" class="form-control" />
+                <span asp-validation-for="Material9Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9TotalPrice" class="control-label"></label>
+                <input asp-for="Material9TotalPrice" class="form-control" />
+                <span asp-validation-for="Material9TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9EdgeH1" class="control-label"></label>
+                <input asp-for="Material9EdgeH1" class="form-control" />
+                <span asp-validation-for="Material9EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9EdgeH2" class="control-label"></label>
+                <input asp-for="Material9EdgeH2" class="form-control" />
+                <span asp-validation-for="Material9EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9EdgeL1" class="control-label"></label>
+                <input asp-for="Material9EdgeL1" class="form-control" />
+                <span asp-validation-for="Material9EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9EdgeL2" class="control-label"></label>
+                <input asp-for="Material9EdgeL2" class="form-control" />
+                <span asp-validation-for="Material9EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material9EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material9EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material9EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10Name" class="control-label"></label>
+                <input asp-for="Material10Name" class="form-control" />
+                <span asp-validation-for="Material10Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10Price" class="control-label"></label>
+                <input asp-for="Material10Price" class="form-control" />
+                <span asp-validation-for="Material10Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10Length" class="control-label"></label>
+                <input asp-for="Material10Length" class="form-control" />
+                <span asp-validation-for="Material10Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10Height" class="control-label"></label>
+                <input asp-for="Material10Height" class="form-control" />
+                <span asp-validation-for="Material10Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10Qty" class="control-label"></label>
+                <input asp-for="Material10Qty" class="form-control" />
+                <span asp-validation-for="Material10Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10Quadrature" class="control-label"></label>
+                <input asp-for="Material10Quadrature" class="form-control" />
+                <span asp-validation-for="Material10Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10TotalPrice" class="control-label"></label>
+                <input asp-for="Material10TotalPrice" class="form-control" />
+                <span asp-validation-for="Material10TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10EdgeH1" class="control-label"></label>
+                <input asp-for="Material10EdgeH1" class="form-control" />
+                <span asp-validation-for="Material10EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10EdgeH2" class="control-label"></label>
+                <input asp-for="Material10EdgeH2" class="form-control" />
+                <span asp-validation-for="Material10EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10EdgeL1" class="control-label"></label>
+                <input asp-for="Material10EdgeL1" class="form-control" />
+                <span asp-validation-for="Material10EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10EdgeL2" class="control-label"></label>
+                <input asp-for="Material10EdgeL2" class="form-control" />
+                <span asp-validation-for="Material10EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material10EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material10EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material10EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11Name" class="control-label"></label>
+                <input asp-for="Material11Name" class="form-control" />
+                <span asp-validation-for="Material11Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11Price" class="control-label"></label>
+                <input asp-for="Material11Price" class="form-control" />
+                <span asp-validation-for="Material11Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11Length" class="control-label"></label>
+                <input asp-for="Material11Length" class="form-control" />
+                <span asp-validation-for="Material11Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11Height" class="control-label"></label>
+                <input asp-for="Material11Height" class="form-control" />
+                <span asp-validation-for="Material11Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11Qty" class="control-label"></label>
+                <input asp-for="Material11Qty" class="form-control" />
+                <span asp-validation-for="Material11Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11Quadrature" class="control-label"></label>
+                <input asp-for="Material11Quadrature" class="form-control" />
+                <span asp-validation-for="Material11Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11TotalPrice" class="control-label"></label>
+                <input asp-for="Material11TotalPrice" class="form-control" />
+                <span asp-validation-for="Material11TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11EdgeH1" class="control-label"></label>
+                <input asp-for="Material11EdgeH1" class="form-control" />
+                <span asp-validation-for="Material11EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11EdgeH2" class="control-label"></label>
+                <input asp-for="Material11EdgeH2" class="form-control" />
+                <span asp-validation-for="Material11EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11EdgeL1" class="control-label"></label>
+                <input asp-for="Material11EdgeL1" class="form-control" />
+                <span asp-validation-for="Material11EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11EdgeL2" class="control-label"></label>
+                <input asp-for="Material11EdgeL2" class="form-control" />
+                <span asp-validation-for="Material11EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material11EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material11EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material11EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12Name" class="control-label"></label>
+                <input asp-for="Material12Name" class="form-control" />
+                <span asp-validation-for="Material12Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12Price" class="control-label"></label>
+                <input asp-for="Material12Price" class="form-control" />
+                <span asp-validation-for="Material12Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12Length" class="control-label"></label>
+                <input asp-for="Material12Length" class="form-control" />
+                <span asp-validation-for="Material12Length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12Height" class="control-label"></label>
+                <input asp-for="Material12Height" class="form-control" />
+                <span asp-validation-for="Material12Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12Qty" class="control-label"></label>
+                <input asp-for="Material12Qty" class="form-control" />
+                <span asp-validation-for="Material12Qty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12Quadrature" class="control-label"></label>
+                <input asp-for="Material12Quadrature" class="form-control" />
+                <span asp-validation-for="Material12Quadrature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12TotalPrice" class="control-label"></label>
+                <input asp-for="Material12TotalPrice" class="form-control" />
+                <span asp-validation-for="Material12TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12EdgeH1" class="control-label"></label>
+                <input asp-for="Material12EdgeH1" class="form-control" />
+                <span asp-validation-for="Material12EdgeH1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12EdgeH2" class="control-label"></label>
+                <input asp-for="Material12EdgeH2" class="form-control" />
+                <span asp-validation-for="Material12EdgeH2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12EdgeL1" class="control-label"></label>
+                <input asp-for="Material12EdgeL1" class="form-control" />
+                <span asp-validation-for="Material12EdgeL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12EdgeL2" class="control-label"></label>
+                <input asp-for="Material12EdgeL2" class="form-control" />
+                <span asp-validation-for="Material12EdgeL2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material12EdgeTotalPrice" class="control-label"></label>
+                <input asp-for="Material12EdgeTotalPrice" class="form-control" />
+                <span asp-validation-for="Material12EdgeTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-success mb-2 w-100 p-3 fw-bolw" type="submit" value="Създаване на заявка"  />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
