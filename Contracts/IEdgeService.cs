@@ -19,5 +19,7 @@ namespace WoodWorking.Contracts
         Task<bool> AddEdgeToCollectionAsync(string userId, AddEditEdgeViewModel edge);
 
         Task<IEnumerable<AllEdgesViewModel?>> GetAddedEdges(string userId);
+
+        Task RemoveEdgeFromCollectionAsync(string userId, AddEditEdgeViewModel edge);
     }
 }

@@ -199,5 +199,17 @@ namespace WoodWorking.Service
                     Price = edge.Edge.Price
                 }).ToListAsync();
         }
+
+        public async Task RemoveEdgeFromCollectionAsync(string userId, AddEditEdgeViewModel edge)
+        {
+            var userEdge = await context.identityUserEdges
+                                .FirstOrDefaultAsync(ue => ue.StoreId == userId && ue.EdgeId == edge.Id);
+
+            if (userEdge != null)
+            {
+                context.identityUserEdges.Remove(userEdge);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

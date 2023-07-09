@@ -100,11 +100,8 @@ namespace WoodWorking.Controllers
 
             if (isSuccesfull)
                 return RedirectToAction(nameof(Joined));
-
             else
-            {
                 return (RedirectToAction("All", new { message = "Този кант вече е селектиран!" }));
-            }
         }
 
         public async Task<IActionResult> Joined()
@@ -114,6 +111,20 @@ namespace WoodWorking.Controllers
             var model = await edgeService.GetAddedEdges(userId);
 
             return View(model);
+        }
+
+        public async Task<IActionResult> Deselect(int id)
+        {
+            var edge = await edgeService.GetEdgeByIdAsync(id);
+
+            if (edge == null)
+                return RedirectToAction(nameof(Joined));
+
+            var userId = userService.GetUserId();
+
+            await edgeService.RemoveEdgeFromCollectionAsync(userId, edge);
+
+            return RedirectToAction(nameof(Joined));
         }
     }
 }
