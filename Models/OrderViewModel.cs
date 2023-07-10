@@ -27,5 +27,9 @@ namespace WoodWorking.Models
         public string? ClientPhone { get; set; }
 
         public List<OrderedMaterial> OrderedMaterials { get; set; } = new List<OrderedMaterial>();
+
+        public int MaterialId { get; set; }
+
+        public IEnumerable<AllMaterialsViewModel> Materials { get; set; } = new List<AllMaterialsViewModel>();
     }
 }

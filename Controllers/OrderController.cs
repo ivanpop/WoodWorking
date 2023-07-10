@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NuGet.DependencyResolver;
 using System.Dynamic;
 using WoodWorking.Contracts;
+using WoodWorking.Data.Models;
 using WoodWorking.Models;
 using WoodWorking.Service;
 
@@ -19,15 +20,23 @@ namespace WoodWorking.Controllers
         }
 
         [HttpGet]
-        public IActionResult New()
+        public async Task<IActionResult> New()
         {
-            return View();
+            OrderViewModel orderViewModel = new OrderViewModel();
+
+            for (int i = 0; i < 12; i++)
+            {
+                orderViewModel.OrderedMaterials.Add(new OrderedMaterial());
+            }
+
+            orderViewModel.Materials = await orderService.AllMaterialsAsync();
+
+            return View(orderViewModel);
         }
 
         [HttpPost]
         public IActionResult New(OrderViewModel model)
         {
-
             if (!ModelState.IsValid)
                 return View(model);
 

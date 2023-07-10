@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WoodWorking.Models;
 
 namespace WoodWorking.Data.Models
 {

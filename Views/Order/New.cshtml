@@ -5,11 +5,11 @@
 }
 @*MaterialPrice, EdgePrice, TotalPrice*@
 
-<h2 class="text-center">@ViewBag.Title</h2>
+<h2 class="text-center">Нова поръчка</h2>
 
 <hr />
 <div class="container">    
-    <form asp-action="Add" method="post">
+    <form asp-action="New" method="post">
         <div class="form-group form-check">
             <label class="form-check-label">
                 <input class="form-check-input" asp-for="IsExpress" /> @Html.DisplayNameFor(model => model.IsExpress)
@@ -47,13 +47,19 @@
                     <th>L</th>
                 </tr>
             </thead>
-            <tbody>                                   
+            <tbody> 
                 @for (int i = 0; i < 12; i++)
                 {
                     <tr>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialName" class="form-control" />
+                                <select asp-for="OrderedMaterials[i].MaterialName" class="form-control">
+                                    <option></option>
+                                    @foreach (var material in Model.Materials)
+                                    {
+                                        <option value="@material.Id">@material.Name</option>
+                                    }
+                                </select>
                             </div>
                         </td>
                         <td>
@@ -112,7 +118,7 @@
                             </div>
                         </td>
                     </tr>
-                }          
+                }
             </tbody>
         </table>
 
