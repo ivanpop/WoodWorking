@@ -13,7 +13,7 @@ namespace WoodWorking.Service
             this.context = context;
         }
 
-        public async Task CreateNewOrderAsync(GetOrderViewModel model)
+        public async Task CreateNewOrderAsync(OrderViewModel model)
         {
             await Console.Out.WriteLineAsync();
         }

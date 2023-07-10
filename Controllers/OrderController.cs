@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.DependencyResolver;
+using System.Dynamic;
 using WoodWorking.Contracts;
 using WoodWorking.Models;
 using WoodWorking.Service;
@@ -23,10 +25,13 @@ namespace WoodWorking.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(GetOrderViewModel model)
+        public IActionResult New(OrderViewModel model)
         {
+
             if (!ModelState.IsValid)
                 return View(model);
+
+            //userId, CreatedDate
 
             //bool result = await orderService.CreateNewOrderAsync(model);
 
@@ -36,7 +41,9 @@ namespace WoodWorking.Controllers
             //    return View(model);
             //}
 
-            return RedirectToAction(nameof(New));
+            //return RedirectToAction(nameof(New));
+
+            return View(model);
         }
     }
 }

@@ -99,3 +99,11 @@ body {
     border-color: black;
     color: black;
 }
+
+.border {
+    border: 2px solid black !important;
+}
+
+td {
+    border: 1px solid black
+}

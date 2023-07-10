@@ -26,149 +26,17 @@ namespace WoodWorking.Data
             modelBuilder.Entity<Order>().Property(e => e.EdgePrice).HasPrecision(18, 2);
             modelBuilder.Entity<Order>().Property(e => e.TotalPrice).HasPrecision(18, 2);
 
-            modelBuilder.Entity<Order>().Property(e => e.Material1Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material1Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material1Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material1Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material1Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material1TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material1EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material1EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material1EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material1EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material1EdgeTotalPrice).HasPrecision(18, 2);
-
-            modelBuilder.Entity<Order>().Property(e => e.Material2Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material2Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material2Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material2Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material2Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material2TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material2EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material2EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material2EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material2EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material2EdgeTotalPrice).HasPrecision(18, 2);
-
-            modelBuilder.Entity<Order>().Property(e => e.Material3Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material3Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material3Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material3Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material3Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material3TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material3EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material3EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material3EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material3EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material3EdgeTotalPrice).HasPrecision(18, 2);
-
-            modelBuilder.Entity<Order>().Property(e => e.Material4Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material4Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material4Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material4Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material4Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material4TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material4EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material4EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material4EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material4EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material4EdgeTotalPrice).HasPrecision(18, 2);
-
-            modelBuilder.Entity<Order>().Property(e => e.Material5Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material5Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material5Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material5Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material5Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material5TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material5EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material5EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material5EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material5EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material5EdgeTotalPrice).HasPrecision(18, 2);
-
-            modelBuilder.Entity<Order>().Property(e => e.Material6Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material6Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material6Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material6Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material6Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material6TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material6EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material6EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material6EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material6EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material6EdgeTotalPrice).HasPrecision(18, 2);
-
-            modelBuilder.Entity<Order>().Property(e => e.Material7Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material7Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material7Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material7Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material7Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material7TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material7EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material7EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material7EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material7EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material7EdgeTotalPrice).HasPrecision(18, 2);
-
-            modelBuilder.Entity<Order>().Property(e => e.Material8Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material8Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material8Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material8Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material8Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material8TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material8EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material8EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material8EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material8EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material8EdgeTotalPrice).HasPrecision(18, 2);
-
-            modelBuilder.Entity<Order>().Property(e => e.Material9Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material9Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material9Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material9Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material9Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material9TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material9EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material9EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material9EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material9EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material9EdgeTotalPrice).HasPrecision(18, 2);
-
-            modelBuilder.Entity<Order>().Property(e => e.Material10Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material10Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material10Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material10Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material10Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material10TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material10EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material10EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material10EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material10EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material10EdgeTotalPrice).HasPrecision(18, 2);
-
-            modelBuilder.Entity<Order>().Property(e => e.Material11Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material11Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material11Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material11Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material11Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material11TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material11EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material11EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material11EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material11EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material11EdgeTotalPrice).HasPrecision(18, 2);
-
-            modelBuilder.Entity<Order>().Property(e => e.Material12Price).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material12Length).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material12Height).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material12Qty).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material12Quadrature).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material12TotalPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material12EdgeH1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material12EdgeH2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material12EdgeL1).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material12EdgeL2).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(e => e.Material12EdgeTotalPrice).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialPrice).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialLength).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialHeight).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialQty).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialQuadrature).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialTotalPrice).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialEdgeH1).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialEdgeH2).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialEdgeL1).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialEdgeL2).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialEdgeTotalPrice).HasPrecision(18, 2);
 
             modelBuilder
                 .Entity<Material>()
@@ -402,5 +270,7 @@ namespace WoodWorking.Data
         public DbSet<IdentityUserEdge> IdentityUserEdges { get; set; }
 
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderedMaterial> OrderedMaterials { get; set; }
     }
 }
