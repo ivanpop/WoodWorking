@@ -13,10 +13,12 @@ namespace WoodWorking.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderService orderService;
+        private readonly IUserService userService;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, IUserService userService)
         {
-                this.orderService = orderService;
+            this.orderService = orderService;
+            this.userService = userService;
         }
 
         [HttpGet]
@@ -29,7 +31,10 @@ namespace WoodWorking.Controllers
                 orderViewModel.OrderedMaterials.Add(new OrderedMaterial());
             }
 
+            orderViewModel.CreatedDate = DateTime.Now;
+            orderViewModel.UserId = userService.GetUserId();
             orderViewModel.Materials = await orderService.AllMaterialsAsync();
+            var first = orderViewModel.OrderedMaterials.First();
 
             return View(orderViewModel);
         }

@@ -5,47 +5,49 @@
 }
 @*MaterialPrice, EdgePrice, TotalPrice*@
 
-<h2 class="text-center">Нова поръчка</h2>
+<h1 class="text-center">Нова поръчка</h1>
 
 <hr />
-<button onclick="myFunction()">Try it</button>
 <div class="container">    
-    <form asp-action="New" method="post">
-        <div class="form-group form-check">
-            <label class="form-check-label">
-                <input class="form-check-input" asp-for="IsExpress" /> @Html.DisplayNameFor(model => model.IsExpress)
-            </label>
-        </div>
+    <form asp-action="New" method="post">        
         <div class="form-group">
-            <label asp-for="ClientName" class="control-label"></label>
-            <input asp-for="ClientName" class="form-control" />
+            <label asp-for="ClientName" class="control-label" style="font-weight: bold;">Име на клиента:</label>
+            <input asp-for="ClientName" class="form-control" style="max-width:350px" />
             <span asp-validation-for="ClientName" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="ClientPhone" class="control-label"></label>
-            <input asp-for="ClientPhone" class="form-control" />
+            <label asp-for="ClientPhone" class="control-label" style="font-weight: bold;">Телефонен номер:</label>
+            <input asp-for="ClientPhone" class="form-control" style="max-width:350px;" />
             <span asp-validation-for="ClientPhone" class="text-danger"></span>
         </div>
+        <br />
+
+        <div class="form-group form-check">
+            <label class="form-check-label" style="font-weight: bold;">
+                <input class="form-check-input" asp-for="IsExpress" style="padding: 15px; margin-right: 10px;" />Експресна поръчка +25%
+            </label>
+        </div>
+
         <br />
 
         <table class="table table-condensed table-hover border">
             <thead>
                 <tr>
-                    <th rowspan="2">Материали</th>
-                    <th rowspan="2">Цена за м2, лв.</th>
-                    <th rowspan="2">Дължина, m</th>
-                    <th rowspan="2">Широчина, m</th>
-                    <th rowspan="2">Бр</th>
-                    <th rowspan="2">Квадратура</th>
+                    <th rowspan="2" style="min-width: 500px;">Материали</th>
+                    <th rowspan="2" style="min-width: 60px;">Цена</th>
+                    <th rowspan="2" style="min-width: 50px;">Дължина, m</th>
+                    <th rowspan="2" style="min-width: 50px;">Широчина, m</th>
+                    <th rowspan="2" style="min-width: 60px;">Бр</th>
+                    <th rowspan="2" style="min-width: 100px;">Квадратура</th>
                     <th rowspan="2">Цена на материала, лв </th>
-                    <th colspan="4">Кантиране</th>
+                    <th colspan="4" style="min-width: 180px;">Кантиране</th>
                     <th rowspan="2">Цена на кантирането, лв</th>
                 </tr>
                 <tr>
-                    <th>H</th>
-                    <th>H</th>
-                    <th>L</th>
-                    <th>L</th>
+                    <th style="min-width: 40px;">H</th>
+                    <th style="min-width: 40px;">H</th>
+                    <th style="min-width: 40px;">L</th>
+                    <th style="min-width: 40px;">L</th>
                 </tr>
             </thead>
             <tbody> 
@@ -74,22 +76,22 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialLength" class="form-control" />
+                                <input asp-for="OrderedMaterials[i].MaterialLength" class="form-control" onchange="calculateQuadrature(@i);" />
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialHeight" class="form-control" />
+                                <input asp-for="OrderedMaterials[i].MaterialHeight" class="form-control" onchange="calculateQuadrature(@i);" />
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialQty" class="form-control" />
+                                <input asp-for="OrderedMaterials[i].MaterialQty" class="form-control" onchange="calculateQuadrature(@i);"/>
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialQuadrature" class="form-control" />
+                                <input asp-for="OrderedMaterials[i].MaterialQuadrature" class="form-control" disabled="disabled"/>
                             </div>
                         </td>
                         <td>
@@ -127,8 +129,10 @@
             </tbody>
         </table>
 
-        <div class="mb-3">
-            <input class="btn btn-success mb-2 w-100 p-3 fw-bolw" type="submit" value="Създаване на заявка" />
+        <br />
+
+        <div class="mb-3" style="width: 300px;">
+            <input class="btn btn-success mb-2 w-100 p-3 fw-bolw" type="submit" value="Създаване на заявка" style="font-weight: bold;font-size: larger;" />
         </div>
     </form>
 </div>
@@ -138,6 +142,29 @@
     {
         var materialName = document.getElementById("OrderedMaterials_" + row + "__MaterialName");
         var materialPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialPrice");
+
         materialPrice.value = materialName.value;
+    }
+
+    function calculateQuadrature(row)
+    {
+        var length = document.getElementById("OrderedMaterials_" + row + "__MaterialLength");
+        var height = document.getElementById("OrderedMaterials_" + row + "__MaterialHeight");
+        var quantity = document.getElementById("OrderedMaterials_" + row + "__MaterialQty");
+
+        length.value = parseF(length.value);
+        height.value = parseF(height.value);
+        quantity.value = parseF(quantity.value);
+
+        if (length.value != 0 && height.value != 0 && quantity.value != 0)
+        {
+            var quadrature = document.getElementById("OrderedMaterials_" + row + "__MaterialQuadrature");
+            quadrature.value = ((length.value * height.value) * quantity.value).toFixed(3);
+        }
+    }
+
+    function parseF(value) 
+    {
+        return parseFloat(value.replace(',', '.').replace(' ', ''));
     }
 </script>

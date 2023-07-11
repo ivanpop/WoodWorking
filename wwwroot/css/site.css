@@ -8,6 +8,12 @@ html {
   }
 }
 
+@media (min-width: 1400px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
 h2 {
     color: black
 }
@@ -107,3 +113,9 @@ body {
 td {
     border: 1px solid black
 }
+
+.form-control, th, td {
+    padding: 0 !important;
+    text-align: center;
+}
+
