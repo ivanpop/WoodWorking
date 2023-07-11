@@ -8,6 +8,7 @@
 <h2 class="text-center">Нова поръчка</h2>
 
 <hr />
+<button onclick="myFunction()">Try it</button>
 <div class="container">    
     <form asp-action="New" method="post">
         <div class="form-group form-check">
@@ -53,7 +54,7 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialName" class="form-control">
+                                <select asp-for="OrderedMaterials[i].MaterialName" onchange="insertPrice(@i);" class="form-control">
                                     <option></option>
                                     @foreach (var material in Model.Materials)
                                     {
@@ -64,7 +65,11 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialPrice" class="form-control" />
+                                <select asp-for="OrderedMaterials[i].MaterialPrice" disabled="disabled" class="form-control" />
+                                @foreach (var material in Model.Materials)
+                                {
+                                    <option value="@material.Id">@material.Price</option>
+                                }
                             </div>
                         </td>
                         <td>
@@ -127,3 +132,12 @@
         </div>
     </form>
 </div>
+
+<script>
+    function insertPrice(row) 
+    {
+        var materialName = document.getElementById("OrderedMaterials_" + row + "__MaterialName");
+        var materialPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialPrice");
+        materialPrice.value = materialName.value;
+    }
+</script>
