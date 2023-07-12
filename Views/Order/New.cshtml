@@ -67,7 +67,8 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialPrice" disabled="disabled" class="form-control" />
+                                <select asp-for="OrderedMaterials[i].MaterialPrice" disabled="disabled" class="form-control" onchange="calculateMaterialTotalPrice(@i); "/>
+                                <option></option>
                                 @foreach (var material in Model.Materials)
                                 {
                                     <option value="@material.Id">@material.Price</option>
@@ -91,12 +92,12 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialQuadrature" class="form-control" disabled="disabled"/>
+                                <input asp-for="OrderedMaterials[i].MaterialQuadrature" class="form-control" />
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialTotalPrice" class="form-control" />
+                                <input asp-for="OrderedMaterials[i].MaterialTotalPrice" class="form-control"  />
                             </div>
                         </td>
                         <td>
@@ -160,6 +161,10 @@
         {
             var quadrature = document.getElementById("OrderedMaterials_" + row + "__MaterialQuadrature");
             quadrature.value = ((length.value * height.value) * quantity.value).toFixed(3);
+
+            
+            var MaterialTotalPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialTotalPrice");
+            MaterialTotalPrice.value = quadrature.value;
         }
     }
 
