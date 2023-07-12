@@ -67,7 +67,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialPrice" disabled="disabled" class="form-control" onchange="calculateMaterialTotalPrice(@i); "/>
+                                <select asp-for="OrderedMaterials[i].MaterialPrice" disabled="disabled" class="form-control"/>
                                 <option></option>
                                 @foreach (var material in Model.Materials)
                                 {
@@ -77,27 +77,27 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialLength" class="form-control" onchange="calculateQuadrature(@i);" />
+                                <input asp-for="OrderedMaterials[i].MaterialLength" class="form-control" onchange="calculateMaterialPrice(@i);" />
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialHeight" class="form-control" onchange="calculateQuadrature(@i);" />
+                                <input asp-for="OrderedMaterials[i].MaterialHeight" class="form-control" onchange="calculacalculateMaterialPriceteQuadrature(@i);" />
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialQty" class="form-control" onchange="calculateQuadrature(@i);"/>
+                                <input asp-for="OrderedMaterials[i].MaterialQty" class="form-control" onchange="calculateMaterialPrice(@i);" />
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialQuadrature" class="form-control" />
+                                <input asp-for="OrderedMaterials[i].MaterialQuadrature" class="form-control" disabled="disabled" />
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialTotalPrice" class="form-control"  />
+                                <input asp-for="OrderedMaterials[i].MaterialTotalPrice" class="form-control" disabled="disabled" />
                             </div>
                         </td>
                         <td>
@@ -144,10 +144,10 @@
         var materialName = document.getElementById("OrderedMaterials_" + row + "__MaterialName");
         var materialPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialPrice");
 
-        materialPrice.value = materialName.value;
+        materialPrice.value = parseF(materialName.value);
     }
 
-    function calculateQuadrature(row)
+    function calculateMaterialPrice(row)
     {
         var length = document.getElementById("OrderedMaterials_" + row + "__MaterialLength");
         var height = document.getElementById("OrderedMaterials_" + row + "__MaterialHeight");
@@ -162,9 +162,10 @@
             var quadrature = document.getElementById("OrderedMaterials_" + row + "__MaterialQuadrature");
             quadrature.value = ((length.value * height.value) * quantity.value).toFixed(3);
 
-            
-            var MaterialTotalPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialTotalPrice");
-            MaterialTotalPrice.value = quadrature.value;
+            var materialPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialPrice");            
+
+            var materialTotalPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialTotalPrice");
+            materialTotalPrice.value = (quadrature.value * parseF(materialPrice.options[materialPrice.selectedIndex].text)).toFixed(2);
         }
     }
 
