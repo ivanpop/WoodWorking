@@ -86,7 +86,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialQty" class="form-control" onchange="calculateMaterialPrice(@i);" />
+                                <input asp-for="OrderedMaterials[i].MaterialQty" class="form-control" onchange="calculateMaterialPrice(@i); calculateEdgePrice(@i);" />
                             </div>
                         </td>
                         <td>
@@ -101,47 +101,47 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialEdgeH1" class="form-control" />
-                                <option></option>
+                                <select asp-for="OrderedMaterials[i].MaterialEdgeH1" class="form-control" onchange="calculateEdgePrice(@i);" />
+                                <option value="0"></option>
                                 @foreach (var edge in Model.Edges)
                                 {
-                                    <option value="@edge.Id">@edge.Height</option>
+                                    <option value="@edge.Price" price="@edge.Price">@edge.Height</option>
                                 }
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialEdgeH2" class="form-control" />
-                                <option></option>
+                                <select asp-for="OrderedMaterials[i].MaterialEdgeH2" class="form-control" onchange="calculateEdgePrice(@i);" />
+                                <option value="0"></option>
                                 @foreach (var edge in Model.Edges)
                                 {
-                                    <option value="@edge.Id">@edge.Height</option>
+                                    <option value="@edge.Price">@edge.Height</option>
                                 }
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialEdgeL1" class="form-control" />
-                                <option></option>
+                                <select asp-for="OrderedMaterials[i].MaterialEdgeL1" class="form-control" onchange="calculateEdgePrice(@i);" />
+                                <option value="0"></option>
                                 @foreach (var edge in Model.Edges)
                                 {
-                                    <option value="@edge.Id">@edge.Length</option>
+                                    <option value="@edge.Price">@edge.Length</option>
                                 }
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialEdgeL2" class="form-control" />
-                                <option></option>
+                                <select asp-for="OrderedMaterials[i].MaterialEdgeL2" class="form-control" onchange="calculateEdgePrice(@i);" />
+                                <option value="0"></option>
                                 @foreach (var edge in Model.Edges)
                                 {
-                                    <option value="@edge.Id">@edge.Length</option>
+                                    <option value="@edge.Price">@edge.Length</option>
                                 }
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialEdgeTotalPrice" class="form-control" />
+                                <input asp-for="OrderedMaterials[i].MaterialEdgeTotalPrice" class="form-control" disabled="disabled" />
                             </div>
                         </td>
                     </tr>
@@ -186,6 +186,19 @@
             var materialTotalPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialTotalPrice");
             materialTotalPrice.value = (quadrature.value * parseF(materialPrice.options[materialPrice.selectedIndex].text)).toFixed(2);
         }
+    }
+
+    function calculateEdgePrice(row)
+    {
+        var quantity = document.getElementById("OrderedMaterials_" + row + "__MaterialQty");
+        var totalPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeTotalPrice");
+
+        var h1 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeH1");
+        var h2 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeH2");
+        var l1 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeL1");
+        var l2 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeL2");
+
+        totalPrice.value = ((parseF(h1.value) + parseF(h2.value) + parseF(l1.value) + parseF(l2.value)) * parseF(quantity.value)).toFixed(2);
     }
 
     function parseF(value) 
