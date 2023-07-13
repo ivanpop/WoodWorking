@@ -30,5 +30,18 @@ namespace WoodWorking.Service
                     Price = m.Price
                 }).ToListAsync();
         }
+
+        public async Task<IEnumerable<AllEdgesViewModel>> GetSelectedEdgesAsync(string id)
+        {
+            return await context.IdentityUserEdges
+                .Where(ie => ie.UserId == id)
+                .Select(ie => new AllEdgesViewModel
+                {
+                    Id = ie.Edge.Id,
+                    Price = ie.Edge.Price,
+                    Height = ie.Edge.Height,
+                    Length = ie.Edge.Length
+                }).ToListAsync();
+        }
     }
 }

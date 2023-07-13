@@ -31,5 +31,7 @@ namespace WoodWorking.Models
         public int MaterialId { get; set; }
 
         public IEnumerable<AllMaterialsViewModel> Materials { get; set; } = new List<AllMaterialsViewModel>();
+
+        public IEnumerable<AllEdgesViewModel> Edges { get; set; } = new List<AllEdgesViewModel>();
     }
 }

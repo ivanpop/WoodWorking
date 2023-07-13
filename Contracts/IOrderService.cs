@@ -7,5 +7,6 @@ namespace WoodWorking.Contracts
         Task CreateNewOrderAsync(OrderViewModel model);
 
         Task<IEnumerable<AllMaterialsViewModel>> AllMaterialsAsync();
+        Task<IEnumerable<AllEdgesViewModel>> GetSelectedEdgesAsync(string id);
     }
 }

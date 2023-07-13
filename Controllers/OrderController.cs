@@ -34,7 +34,7 @@ namespace WoodWorking.Controllers
             orderViewModel.CreatedDate = DateTime.Now;
             orderViewModel.UserId = userService.GetUserId();
             orderViewModel.Materials = await orderService.AllMaterialsAsync();
-            var first = orderViewModel.OrderedMaterials.First();
+            orderViewModel.Edges = await orderService.GetSelectedEdgesAsync(orderViewModel.UserId);
 
             return View(orderViewModel);
         }
