@@ -27,6 +27,11 @@
                 <input class="form-check-input" asp-for="IsExpress" style="padding: 15px; margin-right: 10px;" />Експресна поръчка +25%
             </label>
         </div>
+        <br />
+
+        <div class="form-group">
+            Цена на материала: <input asp-for="MaterialPrice" class="form-control" disabled="disabled" />
+        </div>
 
         <br />
 
@@ -81,7 +86,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialHeight" class="form-control" onchange="calculacalculateMaterialPriceteQuadrature(@i);" />
+                                <input asp-for="OrderedMaterials[i].MaterialHeight" class="form-control" onchange="calculateMaterialPrice(@i);" />
                             </div>
                         </td>
                         <td>
@@ -158,6 +163,8 @@
 </div>
 
 <script>
+    var rowMaterialPrice = [];
+
     function insertPrice(row) 
     {
         var materialName = document.getElementById("OrderedMaterials_" + row + "__MaterialName");
@@ -185,6 +192,10 @@
 
             var materialTotalPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialTotalPrice");
             materialTotalPrice.value = (quadrature.value * parseF(materialPrice.options[materialPrice.selectedIndex].text)).toFixed(2);
+
+            rowMaterialPrice[row] = materialTotalPrice.value;
+
+            calculateMaterialTotalPrice();
         }
     }
 
@@ -199,6 +210,22 @@
         var l2 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeL2");
 
         totalPrice.value = ((parseF(h1.value) + parseF(h2.value) + parseF(l1.value) + parseF(l2.value)) * parseF(quantity.value)).toFixed(2);
+    }
+
+    function calculateMaterialTotalPrice()
+    {
+        let sum = 0;
+
+        for (let i = 0; i < 12; i++)
+        {
+            if (!isNaN(rowMaterialPrice[i])) 
+            {
+                sum += Number(rowMaterialPrice[i]);                
+            }
+        }
+
+        let materialPriceField = document.getElementById("MaterialPrice");
+        materialPriceField.value = sum.toFixed(2);
     }
 
     function parseF(value) 
