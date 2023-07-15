@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Нова поръчка";
 }
-@*MaterialPrice, EdgePrice, TotalPrice*@
 
 <h1 class="text-center">Нова поръчка</h1>
 
@@ -29,8 +28,18 @@
         </div>
         <br />
 
-        <div class="form-group">
-            Цена на материала: <input asp-for="MaterialPrice" class="form-control" disabled="disabled" />
+        <div class="prices" style="font-weight: bold;">
+            <div class="form-group">
+                Цена за материалите: <input asp-for="MaterialPrice" class="prices-fields" disabled="disabled" style="margin-left: 46px;" /> лв.
+            </div>
+
+            <div class="form-group" >
+                Цена за кантиране: <input asp-for="EdgePrice" class="prices-fields" disabled="disabled" style="margin-left: 65px;" /> лв.
+            </div>
+
+            <div class="form-group">
+                Крайна цена: <input asp-for="TotalPrice" class="prices-fields" disabled="disabled" style="margin-left: 113px;" /> лв.
+            </div>
         </div>
 
         <br />
@@ -164,6 +173,7 @@
 
 <script>
     var rowMaterialPrice = [];
+    var rowEdgePrice = [];
 
     function insertPrice(row) 
     {
@@ -226,6 +236,28 @@
 
         let materialPriceField = document.getElementById("MaterialPrice");
         materialPriceField.value = sum.toFixed(2);
+
+        calculateTotalPrice();
+    }
+
+    function calculateTotalPrice()
+    {
+        let sum = 0;
+
+        for (let i = 0; i < 12; i++) {
+            if (!isNaN(rowMaterialPrice[i])) 
+            {
+                sum += Number(rowMaterialPrice[i]);
+            }
+
+            if (!isNaN(rowEdgePrice[i])) 
+            {
+                sum += Number(rowEdgePrice[i]);
+            }
+        }
+
+        let totalPriceField = document.getElementById("TotalPrice");
+        totalPriceField.value = sum.toFixed(2);
     }
 
     function parseF(value) 
