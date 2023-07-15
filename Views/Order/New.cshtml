@@ -220,6 +220,9 @@
         var l2 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeL2");
 
         totalPrice.value = ((parseF(h1.value) + parseF(h2.value) + parseF(l1.value) + parseF(l2.value)) * parseF(quantity.value)).toFixed(2);
+
+        rowEdgePrice[row] = totalPrice.value;
+        calculateEdgeTotalPrice();
     }
 
     function calculateMaterialTotalPrice()
@@ -230,12 +233,27 @@
         {
             if (!isNaN(rowMaterialPrice[i])) 
             {
-                sum += Number(rowMaterialPrice[i]);                
+                sum += Number(rowMaterialPrice[i]);
             }
         }
 
         let materialPriceField = document.getElementById("MaterialPrice");
         materialPriceField.value = sum.toFixed(2);
+
+        calculateTotalPrice();
+    }
+
+    function calculateEdgeTotalPrice() {
+        let sum = 0;
+
+        for (let i = 0; i < 12; i++) {
+            if (!isNaN(rowEdgePrice[i])) {
+                sum += Number(rowEdgePrice[i]);
+            }
+        }
+
+        let edgePriceField = document.getElementById("EdgePrice");
+        edgePriceField.value = sum.toFixed(2);
 
         calculateTotalPrice();
     }
