@@ -70,8 +70,8 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialName" onchange="insertPrice(@i);" class="form-control" />
-                                    <option></option>
+                                <select asp-for="OrderedMaterials[i].MaterialName" onchange="insertPrice(@i); enableMaterialfields(@i, value);" class="form-control" />
+                                    <option value="0"></option>
                                     @foreach (var material in Model.Materials)
                                     {
                                         <option value="@material.Id">@material.Name</option>
@@ -90,17 +90,17 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialLength" class="form-control" onchange="calculateMaterialPrice(@i);" />
+                                <input asp-for="OrderedMaterials[i].MaterialLength" class="form-control" onchange="calculateMaterialPrice(@i);" disabled="disabled" />
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialHeight" class="form-control" onchange="calculateMaterialPrice(@i);" />
+                                <input asp-for="OrderedMaterials[i].MaterialHeight" class="form-control" onchange="calculateMaterialPrice(@i);" disabled="disabled" />
                             </div>
                         </td>
                         <td>
                             <div class="form-group">
-                                <input asp-for="OrderedMaterials[i].MaterialQty" class="form-control" onchange="calculateMaterialPrice(@i); calculateEdgePrice(@i);" />
+                                <input asp-for="OrderedMaterials[i].MaterialQty" class="form-control" onchange="calculateMaterialPrice(@i); calculateEdgePrice(@i);" disabled="disabled" />
                             </div>
                         </td>
                         <td>
@@ -115,7 +115,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialEdgeH1" class="form-control" onchange="calculateEdgePrice(@i);" />
+                                <select asp-for="OrderedMaterials[i].MaterialEdgeH1" class="form-control" onchange="calculateEdgePrice(@i);" disabled="disabled" />
                                 <option value="0"></option>
                                 @foreach (var edge in Model.Edges)
                                 {
@@ -125,7 +125,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialEdgeH2" class="form-control" onchange="calculateEdgePrice(@i);" />
+                                <select asp-for="OrderedMaterials[i].MaterialEdgeH2" class="form-control" onchange="calculateEdgePrice(@i);" disabled="disabled" />
                                 <option value="0"></option>
                                 @foreach (var edge in Model.Edges)
                                 {
@@ -135,7 +135,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialEdgeL1" class="form-control" onchange="calculateEdgePrice(@i);" />
+                                <select asp-for="OrderedMaterials[i].MaterialEdgeL1" class="form-control" onchange="calculateEdgePrice(@i);" disabled="disabled" />
                                 <option value="0"></option>
                                 @foreach (var edge in Model.Edges)
                                 {
@@ -145,7 +145,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialEdgeL2" class="form-control" onchange="calculateEdgePrice(@i);" />
+                                <select asp-for="OrderedMaterials[i].MaterialEdgeL2" class="form-control" onchange="calculateEdgePrice(@i);" disabled="disabled" />
                                 <option value="0"></option>
                                 @foreach (var edge in Model.Edges)
                                 {
@@ -183,11 +183,35 @@
         materialPrice.value = parseF(materialName.value);
     }
 
+    function enableMaterialfields(row, value) 
+    {
+        let length = document.getElementById("OrderedMaterials_" + row + "__MaterialLength");
+        let height = document.getElementById("OrderedMaterials_" + row + "__MaterialHeight");
+        let quantity = document.getElementById("OrderedMaterials_" + row + "__MaterialQty");
+
+        if (value != 0) 
+        {
+            length.disabled = height.disabled = quantity.disabled = false;
+        }
+        else 
+        {
+            var materialTotalPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialTotalPrice");
+            var quadrature = document.getElementById("OrderedMaterials_" + row + "__MaterialQuadrature");
+            length.disabled = height.disabled = quantity.disabled = true;
+            length.value = height.value = quantity.value = quadrature.value = materialTotalPrice.value = "0.00";
+            enableEdgefields(row, false);
+            calculateMaterialPrice(row);
+        }
+    }
+
     function calculateMaterialPrice(row)
     {
         var length = document.getElementById("OrderedMaterials_" + row + "__MaterialLength");
         var height = document.getElementById("OrderedMaterials_" + row + "__MaterialHeight");
         var quantity = document.getElementById("OrderedMaterials_" + row + "__MaterialQty");
+        var quadrature = document.getElementById("OrderedMaterials_" + row + "__MaterialQuadrature");
+        var materialPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialPrice");
+        var materialTotalPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialTotalPrice");
 
         length.value = parseF(length.value);
         height.value = parseF(height.value);
@@ -195,17 +219,40 @@
 
         if (length.value != 0 && height.value != 0 && quantity.value != 0)
         {
-            var quadrature = document.getElementById("OrderedMaterials_" + row + "__MaterialQuadrature");
             quadrature.value = ((length.value * height.value) * quantity.value).toFixed(3);
-
-            var materialPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialPrice");            
-
-            var materialTotalPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialTotalPrice");
             materialTotalPrice.value = (quadrature.value * parseF(materialPrice.options[materialPrice.selectedIndex].text)).toFixed(2);
+            rowMaterialPrice[row] = materialTotalPrice.value;            
+            enableEdgefields(row, true);
+        }
+        else
+        {
+            materialTotalPrice.value = quadrature.value = "0.00";
+            rowMaterialPrice[row] = 0;
+            enableEdgefields(row, false);
+        }
 
-            rowMaterialPrice[row] = materialTotalPrice.value;
+        calculateMaterialTotalPrice();
+    }
 
-            calculateMaterialTotalPrice();
+    function enableEdgefields(row, enable) 
+    {
+        var h1 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeH1");
+        var h2 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeH2");
+        var l1 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeL1");
+        var l2 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeL2");
+        var totalPrice = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeTotalPrice");
+
+        if (enable) 
+        {
+            h1.disabled = h2.disabled = l1.disabled = l2.disabled = false;
+        }
+        else
+        {
+            h1.disabled = h2.disabled = l1.disabled = l2.disabled = true;
+            h1.value = h2.value = l1.value = l2.value = 0;
+            totalPrice.value = ("0.00");
+            rowEdgePrice[row] = 0;
+            calculateEdgeTotalPrice();
         }
     }
 
@@ -280,6 +327,15 @@
 
     function parseF(value) 
     {
-        return parseFloat(value.replace(',', '.').replace(' ', ''));
+        value = parseFloat(value.replace(',', '.').replace(' ', ''));
+
+        if (isNaN(value) || value < 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return value;
+        }
     }
 </script>
