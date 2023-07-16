@@ -23,7 +23,7 @@
 
         <div class="form-group form-check">
             <label class="form-check-label" style="font-weight: bold;">
-                <input class="form-check-input" asp-for="IsExpress" style="padding: 15px; margin-right: 10px;" />Експресна поръчка +25%
+                <input class="form-check-input" asp-for="IsExpress" style="padding: 15px; margin-right: 10px;" onchange="calculateTotalPrice();" />Експресна поръчка +25%
             </label>
         </div>
         <br />
@@ -39,6 +39,9 @@
 
             <div class="form-group">
                 Крайна цена: <input asp-for="TotalPrice" class="prices-fields" disabled="disabled" style="margin-left: 113px;" /> лв.
+            </div>
+            <div class="form-group" id="expressAlert" style="font-size: 20px; color: red; display:none;">
+                Експресна поръчка!
             </div>
         </div>
 
@@ -321,6 +324,13 @@
             }
         }
 
+        if (document.getElementById("IsExpress").checked) 
+        {
+            sum *= 1.25;            
+        }
+
+        displayExpressWarning();
+
         let totalPriceField = document.getElementById("TotalPrice");
         totalPriceField.value = sum.toFixed(2);
     }
@@ -336,6 +346,18 @@
         else
         {
             return value;
+        }
+    }
+
+    function displayExpressWarning()
+    {
+        if (document.getElementById("IsExpress").checked)
+        {
+            document.getElementById("expressAlert").style.display = "inline";
+        }
+        else 
+        {
+            document.getElementById("expressAlert").style.display = "none";
         }
     }
 </script>
