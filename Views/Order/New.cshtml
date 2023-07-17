@@ -169,9 +169,21 @@
         <br />
 
         <div class="mb-3" style="width: 300px;">
-            <input class="btn btn-success mb-2 w-100 p-3 fw-bolw" type="submit" value="Създаване на заявка" onclick="enableAllFields()" style="font-weight: bold;font-size: larger;" />
+            <input class="btn btn-success mb-2 w-100 p-3 fw-bolw" type="submit" value="Създаване на заявка" onclick="enableAllFields();" style="font-weight: bold;font-size: larger;" />
         </div>
     </form>
 </div>
 
 <script src="~/js/neworder.js"></script>
+<script>
+    function enableAllFields() 
+    {
+        for (var i = 0; i < 12; i++) 
+        {
+            document.getElementById("OrderedMaterials_" + i + "__MaterialQuadrature").disabled = false;
+            document.getElementById("OrderedMaterials_" + i + "__MaterialTotalPrice").disabled = false;
+            document.getElementById("OrderedMaterials_" + i + "__MaterialEdgeTotalPrice").disabled = false;
+            document.getElementById("OrderedMaterials_" + i + "__MaterialPrice").disabled = false;
+        }
+    }
+</script>

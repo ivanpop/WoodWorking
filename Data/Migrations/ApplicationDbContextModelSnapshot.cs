@@ -576,16 +576,28 @@ namespace WoodWorking.Data.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("MaterialEdgeH1Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("MaterialEdgeH2")
                         .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("MaterialEdgeH2Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("MaterialEdgeL1")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("MaterialEdgeL1Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("MaterialEdgeL2")
                         .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("MaterialEdgeL2Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("MaterialEdgeTotalPrice")

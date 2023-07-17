@@ -166,15 +166,3 @@ function displayExpressWarning()
     document.getElementById("expressAlert").style.display = document.getElementById("IsExpress").checked ? "inline" : "none";
 }
 
-function enableAllFields() 
-{
-    for (var i = 0; i < 12; i++)
-    {
-        document.getElementById("OrderedMaterials_" + i + "__MaterialQuadrature").disabled = false;
-        document.getElementById("OrderedMaterials_" + i + "__MaterialQuadrature").style.backgroundColor = e9ecef;
-        document.getElementById("OrderedMaterials_" + i + "__MaterialTotalPrice").disabled = false;
-        document.getElementById("OrderedMaterials_" + i + "__MaterialTotalPrice").style.backgroundColor = e9ecef;
-        document.getElementById("OrderedMaterials_" + i + "__MaterialEdgeTotalPrice").disabled = false;
-        document.getElementById("OrderedMaterials_" + i + "__MaterialEdgeTotalPrice").style.backgroundColor = e9ecef;
-    }
-}

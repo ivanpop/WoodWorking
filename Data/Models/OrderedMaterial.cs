@@ -25,11 +25,19 @@ namespace WoodWorking.Data.Models
 
         public decimal MaterialEdgeH1 { get; set; }
 
+        public decimal MaterialEdgeH1Price { get; set; }
+
         public decimal MaterialEdgeH2 { get; set; }
+
+        public decimal MaterialEdgeH2Price { get; set; }
 
         public decimal MaterialEdgeL1 { get; set; }
 
+        public decimal MaterialEdgeL1Price { get; set; }
+
         public decimal MaterialEdgeL2 { get; set; }
+
+        public decimal MaterialEdgeL2Price { get; set; }
 
         public decimal MaterialEdgeTotalPrice { get; set; }
     }

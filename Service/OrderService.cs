@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Library.Services;
+using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging;
 using WoodWorking.Contracts;
 using WoodWorking.Data;
+using WoodWorking.Data.Models;
 using WoodWorking.Models;
 
 namespace WoodWorking.Service
@@ -8,10 +11,12 @@ namespace WoodWorking.Service
     public class OrderService : IOrderService
     {
         private readonly WoodWorkingDbContext context;
+        private readonly IUserService userService;
 
-        public OrderService(WoodWorkingDbContext context)
+        public OrderService(WoodWorkingDbContext context, IUserService userService)
         {
             this.context = context;
+            this.userService = userService;
         }
 
         public async Task CreateNewOrderAsync(OrderViewModel model)
@@ -42,6 +47,31 @@ namespace WoodWorking.Service
                     Height = ie.Edge.Height,
                     Length = ie.Edge.Length
                 }).ToListAsync();
+        }
+
+        public async Task<FinishedOrderViewModel> ConvertToFinishedOrder(OrderViewModel model)
+        {
+            FinishedOrderViewModel finishedOrder = new FinishedOrderViewModel();
+            finishedOrder.OrderedMaterials = model.OrderedMaterials;
+
+            finishedOrder.ClientName = model.ClientName;
+            finishedOrder.ClientPhone = model.ClientPhone;
+            finishedOrder.CreatedDate = DateTime.Now;
+            finishedOrder.EdgePrice = model.EdgePrice;
+            finishedOrder.IsExpress = model.IsExpress;
+            finishedOrder.UserId = userService.GetUserId();
+            finishedOrder.MaterialPrice = model.MaterialPrice;
+            finishedOrder.TotalPrice = model.TotalPrice;
+
+            for (int i = 0; i < 12; i++)
+            {
+                finishedOrder.OrderedMaterials.ElementAt(i).MaterialName = context.Materials
+                    .Where(m => m.Id == int.Parse(finishedOrder.OrderedMaterials.ElementAt(i).MaterialName))
+                    .Select(m => m.Name)
+                    .First().ToString();
+            }
+
+            return finishedOrder;
         }
     }
 }
