@@ -30,15 +30,15 @@
 
         <div class="prices" style="font-weight: bold;">
             <div class="form-group">
-                Цена за материалите: <input asp-for="MaterialPrice" class="prices-fields" disabled="disabled" style="margin-left: 46px;" /> лв.
+                Цена за материалите: <input asp-for="MaterialPrice" class="prices-fields" readonly style="margin-left: 46px; background-color: #e9ecef;" /> лв.
             </div>
 
             <div class="form-group" >
-                Цена за кантиране: <input asp-for="EdgePrice" class="prices-fields" disabled="disabled" style="margin-left: 65px;" /> лв.
+                Цена за кантиране: <input asp-for="EdgePrice" class="prices-fields" readonly style="margin-left: 65px; background-color: #e9ecef;" /> лв.
             </div>
 
             <div class="form-group">
-                Крайна цена: <input asp-for="TotalPrice" class="prices-fields" disabled="disabled" style="margin-left: 113px;" /> лв.
+                Крайна цена: <input asp-for="TotalPrice" class="prices-fields" readonly style="margin-left: 113px; background-color: #e9ecef;" /> лв.
             </div>
             <div class="form-group" id="expressAlert" style="font-size: 20px; color: red; display:none;">
                 Експресна поръчка!
@@ -73,7 +73,7 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <select asp-for="OrderedMaterials[i].MaterialName" onchange="insertPrice(@i); enableMaterialfields(@i, value);" class="form-control" />
+                                <select asp-for="OrderedMaterials[i].MaterialName" onchange="insertPrice(@i); enableMaterialFields(@i, value);" class="form-control" />
                                     <option value="0"></option>
                                     @foreach (var material in Model.Materials)
                                     {
@@ -169,7 +169,7 @@
         <br />
 
         <div class="mb-3" style="width: 300px;">
-            <input class="btn btn-success mb-2 w-100 p-3 fw-bolw" type="submit" value="Създаване на заявка" style="font-weight: bold;font-size: larger;" />
+            <input class="btn btn-success mb-2 w-100 p-3 fw-bolw" type="submit" value="Създаване на заявка" onclick="enableAllFields()" style="font-weight: bold;font-size: larger;" />
         </div>
     </form>
 </div>

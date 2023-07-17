@@ -6,7 +6,7 @@ function insertPrice(row)
     document.getElementById("OrderedMaterials_" + row + "__MaterialPrice").value = parseF(document.getElementById("OrderedMaterials_" + row + "__MaterialName").value);
 }
 
-function enableMaterialfields(row, value)
+function enableMaterialFields(row, value)
 {
     let length = document.getElementById("OrderedMaterials_" + row + "__MaterialLength");
     let height = document.getElementById("OrderedMaterials_" + row + "__MaterialHeight");
@@ -23,7 +23,7 @@ function enableMaterialfields(row, value)
 
         length.disabled = height.disabled = quantity.disabled = true;
         length.value = height.value = quantity.value = quadrature.value = materialTotalPrice.value = "0.00";
-        enableEdgefields(row, false);
+        enableEdgeFields(row, false);
         calculateMaterialPrice(row);
     }
 }
@@ -46,19 +46,19 @@ function calculateMaterialPrice(row)
         quadrature.value = ((length.value * height.value) * quantity.value).toFixed(3);
         materialTotalPrice.value = (quadrature.value * parseF(materialPrice.options[materialPrice.selectedIndex].text)).toFixed(2);
         rowMaterialPrice[row] = materialTotalPrice.value;
-        enableEdgefields(row, true);
+        enableEdgeFields(row, true);
     }
     else
     {
         materialTotalPrice.value = quadrature.value = "0.00";
         rowMaterialPrice[row] = 0;
-        enableEdgefields(row, false);
+        enableEdgeFields(row, false);
     }
 
     calculateMaterialTotalPrice();
 }
 
-function enableEdgefields(row, enable)
+function enableEdgeFields(row, enable)
 {
     let h1 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeH1");
     let h2 = document.getElementById("OrderedMaterials_" + row + "__MaterialEdgeH2");
@@ -164,4 +164,17 @@ function parseF(value)
 function displayExpressWarning()
 {
     document.getElementById("expressAlert").style.display = document.getElementById("IsExpress").checked ? "inline" : "none";
+}
+
+function enableAllFields() 
+{
+    for (var i = 0; i < 12; i++)
+    {
+        document.getElementById("OrderedMaterials_" + i + "__MaterialQuadrature").disabled = false;
+        document.getElementById("OrderedMaterials_" + i + "__MaterialQuadrature").style.backgroundColor = e9ecef;
+        document.getElementById("OrderedMaterials_" + i + "__MaterialTotalPrice").disabled = false;
+        document.getElementById("OrderedMaterials_" + i + "__MaterialTotalPrice").style.backgroundColor = e9ecef;
+        document.getElementById("OrderedMaterials_" + i + "__MaterialEdgeTotalPrice").disabled = false;
+        document.getElementById("OrderedMaterials_" + i + "__MaterialEdgeTotalPrice").style.backgroundColor = e9ecef;
+    }
 }

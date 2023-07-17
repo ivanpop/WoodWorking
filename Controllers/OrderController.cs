@@ -31,8 +31,6 @@ namespace WoodWorking.Controllers
                 orderViewModel.OrderedMaterials.Add(new OrderedMaterial());
             }
 
-            orderViewModel.CreatedDate = DateTime.Now;
-            orderViewModel.UserId = userService.GetUserId();
             orderViewModel.Materials = await orderService.AllMaterialsAsync();
             orderViewModel.Edges = await orderService.GetSelectedEdgesAsync(orderViewModel.UserId);
 
@@ -42,6 +40,9 @@ namespace WoodWorking.Controllers
         [HttpPost]
         public IActionResult New(OrderViewModel model)
         {
+            model.CreatedDate = DateTime.Now;
+            model.UserId = userService.GetUserId();
+
             if (!ModelState.IsValid)
                 return View(model);
 
