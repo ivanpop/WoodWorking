@@ -10,6 +10,6 @@ namespace WoodWorking.Contracts
 
         Task<IEnumerable<AllEdgesViewModel>> GetSelectedEdgesAsync(string id);
 
-        Task <FinishedOrderViewModel> ConvertToFinishedOrder(OrderViewModel model);
+        FinishedOrderViewModel ConvertToFinishedOrder(OrderViewModel model);
     }
 }

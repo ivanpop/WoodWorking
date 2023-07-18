@@ -49,7 +49,7 @@ namespace WoodWorking.Service
                 }).ToListAsync();
         }
 
-        public async Task<FinishedOrderViewModel> ConvertToFinishedOrder(OrderViewModel model)
+        public FinishedOrderViewModel ConvertToFinishedOrder(OrderViewModel model)
         {
             FinishedOrderViewModel finishedOrder = new FinishedOrderViewModel();
             finishedOrder.OrderedMaterials = model.OrderedMaterials;
@@ -65,10 +65,19 @@ namespace WoodWorking.Service
 
             for (int i = 0; i < 12; i++)
             {
-                finishedOrder.OrderedMaterials.ElementAt(i).MaterialName = context.Materials
-                    .Where(m => m.Id == int.Parse(finishedOrder.OrderedMaterials.ElementAt(i).MaterialName))
-                    .Select(m => m.Name)
-                    .First().ToString();
+                if  (finishedOrder.OrderedMaterials.ElementAt(i).MaterialName != "0")
+                {
+                    var selectedMaterial = context.Materials
+                        .Where(m => m.Id == int.Parse(finishedOrder.OrderedMaterials.ElementAt(i).MaterialName))
+                        .Select(m => new
+                        {
+                            Name = m.Name,
+                            Price = m.Price,
+                        }).First();
+
+                    finishedOrder.OrderedMaterials.ElementAt(i).MaterialName = selectedMaterial.Name;
+                    finishedOrder.OrderedMaterials.ElementAt(i).MaterialPrice = selectedMaterial.Price;
+                }
             }
 
             return finishedOrder;
