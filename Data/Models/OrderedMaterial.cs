@@ -5,6 +5,9 @@ namespace WoodWorking.Data.Models
     public class OrderedMaterial
     {
         [Key]
+        public int OrderedItemsId { get; set; }
+
+        [Required]
         public int OrderId { get; set; }
 
         [Required]
