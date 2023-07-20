@@ -566,11 +566,11 @@ namespace WoodWorking.Data.Migrations
 
             modelBuilder.Entity("WoodWorking.Data.Models.OrderedMaterial", b =>
                 {
-                    b.Property<int>("OrderedMaterialsId")
+                    b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderedMaterialsId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
                     b.Property<decimal>("MaterialEdgeH1")
                         .HasPrecision(18, 2)
@@ -632,12 +632,12 @@ namespace WoodWorking.Data.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("OrderId")
+                    b.Property<int>("OrderId1")
                         .HasColumnType("int");
 
-                    b.HasKey("OrderedMaterialsId");
+                    b.HasKey("OrderId");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("OrderId1");
 
                     b.ToTable("OrderedMaterials");
                 });
@@ -735,7 +735,9 @@ namespace WoodWorking.Data.Migrations
                 {
                     b.HasOne("WoodWorking.Data.Models.Order", null)
                         .WithMany("OrderedMaterials")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WoodWorking.Data.Models.Order", b =>

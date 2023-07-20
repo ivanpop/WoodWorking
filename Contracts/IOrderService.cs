@@ -4,7 +4,7 @@ namespace WoodWorking.Contracts
 {
     public interface IOrderService
     {
-        Task CreateNewOrderAsync(OrderViewModel model);
+        Task CreateNewOrderAsync(FinishedOrderViewModel model);
 
         Task<IEnumerable<AllMaterialsViewModel>> AllMaterialsAsync();
 

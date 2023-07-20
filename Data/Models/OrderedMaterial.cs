@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WoodWorking.Models;
 
 namespace WoodWorking.Data.Models
 {
     public class OrderedMaterial
     {
         [Key]
-        public int OrderedMaterialsId { get; set; }
+        public int OrderId { get; set; }
 
         [Required]
         public string MaterialName { get; set; } = null!;

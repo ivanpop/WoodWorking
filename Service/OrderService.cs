@@ -20,9 +20,22 @@ namespace WoodWorking.Service
             this.userService = userService;
         }
 
-        public async Task CreateNewOrderAsync(OrderViewModel model)
+        public async Task CreateNewOrderAsync(FinishedOrderViewModel model)
         {
-            await Console.Out.WriteLineAsync();
+            Order order = new Order();
+
+            order.ClientName = model.ClientName;
+            order.ClientPhone = model.ClientPhone;
+            order.CreatedDate = model.CreatedDate;
+            order.EdgePrice = model.EdgePrice;
+            order.IsExpress = model.IsExpress;
+            order.MaterialPrice = model.MaterialPrice;
+            order.TotalPrice = model.TotalPrice;
+            order.UserId = model.UserId;
+            order.OrderedMaterials = model.OrderedMaterials;
+
+            await context.Orders.AddAsync(order);
+            await context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<AllMaterialsViewModel>> AllMaterialsAsync()

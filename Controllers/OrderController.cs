@@ -38,26 +38,13 @@ namespace WoodWorking.Controllers
         }
 
         [HttpPost]
-        public IActionResult New(OrderViewModel model)
+        public async Task<IActionResult> New(OrderViewModel model)
         {
-            var finishedOrder = orderService.ConvertToFinishedOrder(model);           
+            var finishedOrder = orderService.ConvertToFinishedOrder(model);   
 
-            if (!ModelState.IsValid)
-                return View(model);
+            await orderService.CreateNewOrderAsync(finishedOrder);
 
-            //userId, CreatedDate
-
-            //bool result = await orderService.CreateNewOrderAsync(model);
-
-            //if (!result)
-            //{
-            //    ViewBag.Error = "error";
-            //    return View(model);
-            //}
-
-            //return RedirectToAction(nameof(New));
-
-            return View(model);
+            return RedirectToAction(nameof(New));
         }
     }
 }
