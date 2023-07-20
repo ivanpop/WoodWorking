@@ -165,4 +165,3 @@ function displayExpressWarning()
 {
     document.getElementById("expressAlert").style.display = document.getElementById("IsExpress").checked ? "inline" : "none";
 }
-

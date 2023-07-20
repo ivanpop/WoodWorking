@@ -1,4 +1,5 @@
 ﻿using Library.Services;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging;
 using WoodWorking.Contracts;
@@ -65,18 +66,41 @@ namespace WoodWorking.Service
 
             for (int i = 0; i < 12; i++)
             {
-                if  (finishedOrder.OrderedMaterials.ElementAt(i).MaterialName != "0")
+                var selectedElement = finishedOrder.OrderedMaterials.ElementAt(i);
+
+                if  (selectedElement.MaterialName != "0")
                 {
-                    var selectedMaterial = context.Materials
+                    var materialNameAndPrice = context.Materials
                         .Where(m => m.Id == int.Parse(finishedOrder.OrderedMaterials.ElementAt(i).MaterialName))
                         .Select(m => new
                         {
-                            Name = m.Name,
-                            Price = m.Price,
+                            m.Name,
+                            m.Price
                         }).First();
 
-                    finishedOrder.OrderedMaterials.ElementAt(i).MaterialName = selectedMaterial.Name;
-                    finishedOrder.OrderedMaterials.ElementAt(i).MaterialPrice = selectedMaterial.Price;
+                    selectedElement.MaterialName = materialNameAndPrice.Name;
+                    selectedElement.MaterialPrice = materialNameAndPrice.Price;
+
+                    if (selectedElement.MaterialEdgeTotalPrice != 0)
+                    {
+                        selectedElement.MaterialEdgeL1Price = selectedElement.MaterialEdgeL1;
+                        selectedElement.MaterialEdgeL2Price = selectedElement.MaterialEdgeL2;
+                        selectedElement.MaterialEdgeH1Price = selectedElement.MaterialEdgeH1;
+                        selectedElement.MaterialEdgeH2Price = selectedElement.MaterialEdgeH2;
+
+                        var edgeMeasurement = context.IdentityUserEdges
+                            .Where(ue => ue.UserId == finishedOrder.UserId)
+                            .Select(e => new
+                            {
+                                Edge = e.Edge.Height,
+                                e.Edge.Price
+                            });
+
+                        selectedElement.MaterialEdgeL1 = edgeMeasurement.Where(e => e.Price == selectedElement.MaterialEdgeL1).Select(e => e.Edge).FirstOrDefault();
+                        selectedElement.MaterialEdgeL2 = edgeMeasurement.Where(e => e.Price == selectedElement.MaterialEdgeL2).Select(e => e.Edge).FirstOrDefault();
+                        selectedElement.MaterialEdgeH1 = edgeMeasurement.Where(e => e.Price == selectedElement.MaterialEdgeH1).Select(e => e.Edge).FirstOrDefault();
+                        selectedElement.MaterialEdgeH2 = edgeMeasurement.Where(e => e.Price == selectedElement.MaterialEdgeH2).Select(e => e.Edge).FirstOrDefault();
+                    }
                 }
             }
 
