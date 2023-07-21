@@ -48,20 +48,12 @@ namespace WoodWorking.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(int id)
         {
-            FinishedOrderViewModel order = await orderService.GetOrderAsync(2);
+            FinishedOrderViewModel order = await orderService.GetOrderAsync(id);
 
-            //if (order == null)
-
-
-            //for (int i = 0; i < 12; i++)
-            //{
-            //    order.OrderedMaterials.Add(new OrderedMaterial());
-            //}
-
-            //order.Materials = await orderService.AllMaterialsAsync();
-            //order.Edges = await orderService.GetSelectedEdgesAsync(userService.GetUserId());
+            if (order == null || order.UserId != userService.GetUserId())
+                return RedirectToAction(nameof(All));
 
             return View(order);
         }

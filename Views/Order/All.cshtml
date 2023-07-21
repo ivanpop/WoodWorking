@@ -20,6 +20,7 @@
                 <th>Цена на материалите</th>
                 <th>Цена на кантирането</th>
                 <th>Крайна цена</th>
+                <th>Детайли</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +38,7 @@
                     <td>@order.MaterialPrice</td>
                     <td>@order.EdgePrice</td>
                     <td>@order.TotalPrice</td>
+                    <td><a asp-controller="Order" asp-action="Get" asp-route-id="@(i + 1)">Детайли</a></td>                    
                 </tr>
             }
 

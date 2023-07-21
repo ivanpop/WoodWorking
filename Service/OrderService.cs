@@ -113,11 +113,11 @@ namespace WoodWorking.Service
             return finishedOrder;
         }
 
-        public async Task<FinishedOrderViewModel> GetOrderAsync(int id)
+        public async Task<FinishedOrderViewModel?> GetOrderAsync(int id)
         {
             return await context.Orders
                 .Where(o => o.Id == id)
-                .Select(o => new FinishedOrderViewModel 
+                .Select(o => new FinishedOrderViewModel
                 {
                     Id = o.Id,
                     UserId = o.UserId,
@@ -129,7 +129,7 @@ namespace WoodWorking.Service
                     MaterialPrice = o.MaterialPrice,
                     TotalPrice = o.TotalPrice,
                     OrderedMaterials = o.OrderedMaterials
-                }).FirstAsync();
+                }).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<AllOrdersViewModel>> AllOrdersByUserAsync(string id)
