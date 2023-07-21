@@ -2,12 +2,135 @@
 
 @{
     ViewData["Title"] = "Поръчка";
+    var isExpress = Model.IsExpress ? "Да" : "Не";
+    string date = Model.CreatedDate.ToString();
+    date = date.Substring(0, date.Length - 3);
 }
 
-<h1 class="text-center">Поръчка</h1>
+<h1 class="text-center">Поръчка @Model.Id от @date ч.</h1>
 
 <hr />
 
-<div class="container">
-
+<div class="container" style="font-weight:bold; font-size:larger; line-height:40px;">
+    <div>Име на клиента: @Model.ClientName</div>
+    <div>Номер на клиента: @Model.ClientPhone</div>
+    <div>Експресна поръчка: @isExpress</div>
+    <div>Цена на материалите: @Model.MaterialPrice</div>
+    <div>Цена на кантирането: @Model.EdgePrice</div>
+    <div>Крайна цена: @Model.TotalPrice</div>
 </div>
+
+<br />
+
+<table class="table table-condensed table-hover border">
+    <thead>
+        <tr>
+            <th rowspan="2" style="min-width: 200px;">Материали</th>
+            <th rowspan="2" style="min-width: 60px;">Цена</th>
+            <th rowspan="2" style="min-width: 85px;">Дължина, m</th>
+            <th rowspan="2" style="min-width: 85px;">Широчина, m</th>
+            <th rowspan="2" style="min-width: 60px;">Бр</th>
+            <th rowspan="2" style="min-width: 80px;">Квадратура</th>
+            <th rowspan="2">Цена на материала, лв </th>
+            <th colspan="8" style="min-width: 180px;">Кантиране</th>
+            <th rowspan="2">Цена на кантирането, лв</th>
+        </tr>
+        <tr>
+            <th style="min-width: 40px;">H</th>
+            <th style="min-width: 40px;">цена</th>
+            <th style="min-width: 40px;">H</th>
+            <th style="min-width: 40px;">цена</th>
+            <th style="min-width: 40px;">L</th>
+            <th style="min-width: 40px;">цена</th>
+            <th style="min-width: 40px;">L</th>
+            <th style="min-width: 40px;">цена</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var material in Model.OrderedMaterials)
+        {
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialName
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialPrice
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialLength
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialHeight
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialQty
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialQuadrature
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialEdgeTotalPrice
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialEdgeH1
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialEdgeH1Price
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialEdgeH2
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialEdgeH2Price
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialEdgeL1
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialEdgeL1Price
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialEdgeL2
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialEdgeL2Price
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @material.MaterialEdgeTotalPrice
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
