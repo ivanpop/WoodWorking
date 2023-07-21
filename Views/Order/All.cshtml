@@ -1,0 +1,49 @@
+﻿@model PaginatedList<AllOrdersViewModel>;
+@{
+    ViewBag.Title = "Всички поръчки";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<h2 class="text-center">@ViewBag.Title: @Model.Count()</h2>
+<hr />
+
+<div class="text-center row">
+    <table class="table table-condensed table-hover border">
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Дата на създаване</th>
+                <th>Име на клиента</th>
+                <th>Номер на клиента</th>
+                <th>Експресна</th>
+                <th>Цена на материалите</th>
+                <th>Цена на кантирането</th>
+                <th>Крайна цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                var order = Model.ElementAt(i);
+                var isExpress = order.IsExpress ? "Да" : "Не";
+
+                <tr>
+                    <td>@(i+1).</td>
+                    <td>@order.CreatedDate</td>
+                    <td>@order.ClientName</td>
+                    <td>@order.ClientPhone</td>
+                    <td>@isExpress</td>
+                    <td>@order.MaterialPrice</td>
+                    <td>@order.EdgePrice</td>
+                    <td>@order.TotalPrice</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+<a asp-action="All" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-default @prevDisabled">Предишна страница</a>
+<a asp-action="All" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-default @nextDisabled">Следваща страница</a>

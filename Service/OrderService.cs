@@ -112,5 +112,41 @@ namespace WoodWorking.Service
 
             return finishedOrder;
         }
+
+        public async Task<FinishedOrderViewModel> GetOrderAsync(int id)
+        {
+            return await context.Orders
+                .Where(o => o.Id == id)
+                .Select(o => new FinishedOrderViewModel 
+                {
+                    Id = o.Id,
+                    UserId = o.UserId,
+                    ClientName = o.ClientName,
+                    ClientPhone = o.ClientPhone,
+                    CreatedDate = o.CreatedDate,
+                    EdgePrice = o.EdgePrice,
+                    IsExpress = o.IsExpress,
+                    MaterialPrice = o.MaterialPrice,
+                    TotalPrice = o.TotalPrice,
+                    OrderedMaterials = o.OrderedMaterials
+                }).FirstAsync();
+        }
+
+        public async Task<IEnumerable<AllOrdersViewModel>> AllOrdersByUserAsync(string id)
+        {
+            return await context.Orders
+                .Where(o => o.UserId == id)
+                .Select(o => new AllOrdersViewModel
+                {
+                    Id = o.Id,
+                    ClientName = o.ClientName,
+                    ClientPhone = o.ClientPhone,
+                    CreatedDate = o.CreatedDate,
+                    IsExpress = o.IsExpress,
+                    MaterialPrice = o.MaterialPrice,
+                    EdgePrice = o.EdgePrice,
+                    TotalPrice = o.TotalPrice
+                }).ToListAsync();
+        }
     }
 }

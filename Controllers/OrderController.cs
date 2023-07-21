@@ -46,5 +46,34 @@ namespace WoodWorking.Controllers
 
             return RedirectToAction(nameof(New));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            FinishedOrderViewModel order = await orderService.GetOrderAsync(2);
+
+            //if (order == null)
+
+
+            //for (int i = 0; i < 12; i++)
+            //{
+            //    order.OrderedMaterials.Add(new OrderedMaterial());
+            //}
+
+            //order.Materials = await orderService.AllMaterialsAsync();
+            //order.Edges = await orderService.GetSelectedEdgesAsync(userService.GetUserId());
+
+            return View(order);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> All(int? pageNumber)
+        {
+            int pageSize = 5;
+
+            var order = await orderService.AllOrdersByUserAsync(userService.GetUserId());
+            
+            return View(PaginatedList<AllOrdersViewModel>.Create(order.ToList(), pageNumber ?? 1, pageSize));
+        }
     }
 }
