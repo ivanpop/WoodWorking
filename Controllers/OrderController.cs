@@ -72,7 +72,7 @@ namespace WoodWorking.Controllers
 
                 BarcodeWriter.CreateBarcode(selectedMaterial.MaterialQuadrature + "*" + anpf, BarcodeWriterEncoding.Code128)
                 .AddAnnotationTextBelowBarcode(selectedMaterial.MaterialQuadrature + "*" + anpf)
-                .ResizeTo(30, 30)
+                .ResizeTo(60, 50)
                 .SaveAsJpeg("wwwroot\\barcodes\\" + order.UserId + "\\" + (i + 1) + ".jpg");
             }
 

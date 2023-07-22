@@ -117,3 +117,18 @@ td {
 .form-control, th, td {
     padding: 0 !important;
     text-align: center;
+}
+
+#barcode-container 
+{
+    height: 680px
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    border: 2px solid;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
