@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient.Server;
 using NuGet.DependencyResolver;
+using System.Drawing;
 using System.Dynamic;
 using WoodWorking.Contracts;
 using WoodWorking.Data.Models;
 using WoodWorking.Models;
 using WoodWorking.Service;
+using IronBarCode;
 
 namespace WoodWorking.Controllers
 {
@@ -56,6 +59,22 @@ namespace WoodWorking.Controllers
 
             if (order == null || order.UserId != userService.GetUserId())
                 return RedirectToAction(nameof(All));
+
+            var materials = await orderService.GetMaterialsANPFAsync();
+
+            for (int i = 0; i < order.OrderedMaterials.Count; i++)
+            {
+                var selectedMaterial = order.OrderedMaterials.ElementAt(i);
+
+                string anpf = materials.
+                    Where(m => m.Name == selectedMaterial.MaterialName)
+                    .Select(m => m.ANPF).First();
+
+                BarcodeWriter.CreateBarcode(selectedMaterial.MaterialQuadrature + "*" + anpf, BarcodeWriterEncoding.Code128)
+                .AddAnnotationTextBelowBarcode(selectedMaterial.MaterialQuadrature + "*" + anpf)
+                .ResizeTo(30, 30)
+                .SaveAsJpeg("wwwroot\\barcodes\\" + order.UserId + "\\" + (i + 1) + ".jpg");
+            }
 
             return View(order);
         }

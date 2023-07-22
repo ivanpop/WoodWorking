@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using IronBarCode;
+using Microsoft.EntityFrameworkCore;
 using WoodWorking.Contracts;
 using WoodWorking.Data;
 using WoodWorking.Data.Models;
@@ -45,6 +46,8 @@ namespace WoodWorking.Service
                     Name = m.Name,
                     Price = m.Price
                 }).ToListAsync();
+
+            
         }
 
         public async Task<IEnumerable<AllEdgesViewModel>> GetSelectedEdgesAsync(string id)
@@ -153,6 +156,16 @@ namespace WoodWorking.Service
         {
             return await context.Orders
                 .CountAsync(o => o.UserId == userService.GetUserId());
+        }
+
+        public async Task<IEnumerable<AllMaterialsViewModel>> GetMaterialsANPFAsync()
+        {
+            return await context.Materials
+                .Select(m => new AllMaterialsViewModel
+                {
+                    Name = m.Name,
+                    ANPF = m.ANPF
+                }).ToListAsync();
         }
     }
 }

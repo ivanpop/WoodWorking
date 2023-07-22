@@ -17,5 +17,7 @@ namespace WoodWorking.Contracts
         Task<IEnumerable<AllOrdersViewModel>> AllOrdersByUserAsync(string id);
 
         Task<int> GetIdOfLastOrderAsync();
+
+        Task<IEnumerable<AllMaterialsViewModel>> GetMaterialsANPFAsync();
     }
 }
