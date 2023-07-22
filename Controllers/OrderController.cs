@@ -40,11 +40,13 @@ namespace WoodWorking.Controllers
         [HttpPost]
         public async Task<IActionResult> New(OrderViewModel model)
         {
-            var finishedOrder = orderService.ConvertToFinishedOrder(model);   
+            var finishedOrder = orderService.ConvertToFinishedOrder(model);
 
             await orderService.CreateNewOrderAsync(finishedOrder);
 
-            return RedirectToAction(nameof(New));
+            int index = await orderService.GetIdOfLastOrderAsync();
+
+            return RedirectToAction("Get", "Order", new { id = index });
         }
 
         [HttpGet]

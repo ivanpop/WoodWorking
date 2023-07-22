@@ -148,5 +148,11 @@ namespace WoodWorking.Service
                     TotalPrice = o.TotalPrice
                 }).ToListAsync();
         }
+
+        public async Task<int> GetIdOfLastOrderAsync()
+        {
+            return await context.Orders
+                .CountAsync(o => o.UserId == userService.GetUserId());
+        }
     }
 }
