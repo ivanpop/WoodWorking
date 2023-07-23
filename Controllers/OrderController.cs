@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient.Server;
-using NuGet.DependencyResolver;
-using System.Drawing;
-using System.Dynamic;
 using WoodWorking.Contracts;
 using WoodWorking.Data.Models;
 using WoodWorking.Models;
-using WoodWorking.Service;
 using IronBarCode;
 
 namespace WoodWorking.Controllers
@@ -62,6 +57,8 @@ namespace WoodWorking.Controllers
 
             var materials = await orderService.GetMaterialsANPFAsync();
 
+            ViewBag.MaterialBarcodes = new List<string>();
+
             for (int i = 0; i < order.OrderedMaterials.Count; i++)
             {
                 var selectedMaterial = order.OrderedMaterials.ElementAt(i);
@@ -70,10 +67,13 @@ namespace WoodWorking.Controllers
                     Where(m => m.Name == selectedMaterial.MaterialName)
                     .Select(m => m.ANPF).First();
 
-                BarcodeWriter.CreateBarcode(selectedMaterial.MaterialQuadrature + "*" + anpf, BarcodeWriterEncoding.Code128)
-                .AddAnnotationTextBelowBarcode(selectedMaterial.MaterialQuadrature + "*" + anpf)
-                .ResizeTo(60, 50)
-                .SaveAsJpeg("wwwroot\\barcodes\\" + order.UserId + "\\" + (i + 1) + ".jpg");
+                MemoryStream ms = 
+                    (MemoryStream)BarcodeWriter.CreateBarcode(selectedMaterial.MaterialQuadrature + "*" + anpf, BarcodeWriterEncoding.Code128)
+                    .AddAnnotationTextBelowBarcode(selectedMaterial.MaterialQuadrature + "*" + anpf)
+                    .ResizeTo(60, 50)
+                    .ToPngStream();
+
+                ViewBag.MaterialBarcodes.Add("data:image/png;base64," + Convert.ToBase64String(ms.ToArray()));
             }
 
             return View(order);
