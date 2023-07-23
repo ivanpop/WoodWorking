@@ -12,6 +12,7 @@ namespace WoodWorking.Data
             : base(options)
         {
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<IdentityUserOrder>().HasKey(x => new { x.UserId, x.OrderId });
