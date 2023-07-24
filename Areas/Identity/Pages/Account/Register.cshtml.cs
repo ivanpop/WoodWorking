@@ -3,7 +3,9 @@
 #nullable disable
 
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,6 +13,7 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace WoodWorking.Areas.Identity.Pages.Account
 {
+    [Authorize(Roles = "admin")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
