@@ -46,6 +46,8 @@ namespace WoodWorking.Service
                     Name = m.Name,
                     Price = m.Price
                 }).ToListAsync();
+
+            
         }
 
         public async Task<IEnumerable<AllEdgesViewModel>> GetSelectedEdgesAsync(string id)
