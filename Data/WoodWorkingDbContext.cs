@@ -42,6 +42,94 @@ namespace WoodWorking.Data
             modelBuilder.Entity<OrderedMaterial>().Property(e => e.MaterialEdgeTotalPrice).HasPrecision(18, 2);
 
             modelBuilder
+                .Entity<Contact>()
+                .HasData(new Contact()
+                {
+                    Id = 1,
+                    Name = "София Младост",
+                    Address = "София бул. „Цариградско шосе”",
+                    Phone = "02/9602059"
+                },
+                new Contact()
+                {
+                    Id = 2,
+                    Name = "София Ринг Мол",
+                    Address = "София бул. „Околовръстно шосе”",
+                    Phone = "02/4053600"
+                },
+                new Contact()
+                {
+                    Id = 3,
+                    Name = "София Ринг Мол",
+                    Address = "София бул. „Околовръстно шосе”",
+                    Phone = "02/9216300"
+                },
+                new Contact()
+                {
+                    Id = 4,
+                    Name = "Перник",
+                    Address = "Перник ул. „Юрий Гагарин”",
+                    Phone = "0884 43 15 94"
+                },
+                new Contact()
+                {
+                    Id = 5,
+                    Name = "Благоевград",
+                    Address = "Благоевград жк. „Струмско”, ул. „Яне Сандански”",
+                    Phone = "073/829500"
+                },
+                new Contact()
+                {
+                    Id = 6,
+                    Name = "Пловдив 2",
+                    Address = "Пловдив ул. „Македония”",
+                    Phone = "032/307779"
+                },
+                new Contact()
+                {
+                    Id = 7,
+                    Name = "Пловдив 1",
+                    Address = "Пловдив бул. „6 септември”",
+                    Phone = "032/605259"
+                },
+                new Contact()
+                {
+                    Id = 8,
+                    Name = "Плевен",
+                    Address = "Плевен ул. „Асен Халачев",
+                    Phone = "064/884900"
+                },
+                new Contact()
+                {
+                    Id = 9,
+                    Name = "Русе",
+                    Address = "Русе бул. „Липник”",
+                    Phone = "082/887810"
+                },
+                new Contact()
+                {
+                    Id = 10,
+                    Name = "Бургас",
+                    Address = "Бургас бул. „Захари Стоянов”",
+                    Phone = "056/874760"
+                },
+                new Contact()
+                {
+                    Id = 11,
+                    Name = "Варна",
+                    Address = "Варна жк. Младост, ул. „Вяра”",
+                    Phone = "052/572559"
+                },
+                new Contact()
+                {
+                    Id = 12,
+                    Name = "Добрич",
+                    Address = "Добрич Околовръстен път „Добротица”, изхода за Албена",
+                    Phone = "058/651680"
+                }
+                );
+
+            modelBuilder
                 .Entity<Material>()
                 .HasData(new Material()
                 {

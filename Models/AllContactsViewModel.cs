@@ -1,19 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace WoodWorking.Data.Models
+﻿namespace WoodWorking.Models
 {
-    public class Contact
+    public class AllContactsViewModel
     {
-        [Key]
         public int Id { get; set; }
 
-        [Required]
         public string Name { get; set; } = null!;
 
-        [Required]
         public string Address { get; set; } = null!;
 
-        [Required]
         public string Phone { get; set; } = null!;
     }
 }
