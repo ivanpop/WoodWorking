@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WoodWorking.Data;
 
@@ -11,9 +12,10 @@ using WoodWorking.Data;
 namespace WoodWorking.Data.Migrations
 {
     [DbContext(typeof(WoodWorkingDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230726180403_addedContact")]
+    partial class addedContact
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,35 +226,6 @@ namespace WoodWorking.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WoodWorking.Data.Models.Contact", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Contacts");
-                });
-
             modelBuilder.Entity("WoodWorking.Data.Models.Edge", b =>
                 {
                     b.Property<int>("Id")
@@ -306,21 +279,6 @@ namespace WoodWorking.Data.Migrations
                             Length = 3m,
                             Price = 4.99m
                         });
-                });
-
-            modelBuilder.Entity("WoodWorking.Data.Models.IdentityUserContact", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ContactId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "ContactId");
-
-                    b.HasIndex("ContactId");
-
-                    b.ToTable("IdentityUserContacts");
                 });
 
             modelBuilder.Entity("WoodWorking.Data.Models.IdentityUserEdge", b =>
@@ -735,25 +693,6 @@ namespace WoodWorking.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("WoodWorking.Data.Models.IdentityUserContact", b =>
-                {
-                    b.HasOne("WoodWorking.Data.Models.Contact", "Contact")
-                        .WithMany()
-                        .HasForeignKey("ContactId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Contact");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WoodWorking.Data.Models.IdentityUserEdge", b =>

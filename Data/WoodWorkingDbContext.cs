@@ -23,6 +23,8 @@ namespace WoodWorking.Data
             modelBuilder.Entity<Edge>().Property(e => e.Height).HasPrecision(18, 2);
             modelBuilder.Entity<Edge>().Property(e => e.Length).HasPrecision(18, 2);
 
+            modelBuilder.Entity<IdentityUserContact>().HasKey(x => new { x.UserId, x.ContactId });
+
             modelBuilder.Entity<Order>().Property(e => e.MaterialPrice).HasPrecision(18, 2);
             modelBuilder.Entity<Order>().Property(e => e.EdgePrice).HasPrecision(18, 2);
             modelBuilder.Entity<Order>().Property(e => e.TotalPrice).HasPrecision(18, 2);
@@ -273,5 +275,9 @@ namespace WoodWorking.Data
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderedMaterial> OrderedMaterials { get; set; }
+
+        public DbSet<IdentityUserContact> IdentityUserContacts { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
     }
 }
