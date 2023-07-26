@@ -3,12 +3,67 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace WoodWorking.Data.Migrations
+namespace WoodWorking.Migrations
 {
     public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contacts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contacts", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Edges",
                 columns: table => new
@@ -58,6 +113,136 @@ namespace WoodWorking.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IdentityUserContacts",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ContactId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IdentityUserContacts", x => new { x.UserId, x.ContactId });
+                    table.ForeignKey(
+                        name: "FK_IdentityUserContacts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_IdentityUserContacts_Contacts_ContactId",
+                        column: x => x.ContactId,
+                        principalTable: "Contacts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -144,6 +329,25 @@ namespace WoodWorking.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Contacts",
+                columns: new[] { "Id", "Address", "ImageUrl", "Name", "Phone" },
+                values: new object[,]
+                {
+                    { 1, "София бул. „Цариградско шосе”", "https://mr-bricolage.bg/medias/mladost-storefront.png?context=bWFzdGVyfG1sYWRvc3R8MTQ5NzE0fGltYWdlL3BuZ3xoNGEvaGQ1LzkxMzUxODIwODYxNzQvbWxhZG9zdC1zdG9yZWZyb250LnBuZ3xlODQxNjU1OTRmNGEyMWM0ZDEzNzZlOTY4ODQ0Mzc3MmE0ZDc2ZWY4MDhlYTJiNmUzOGYwOTFiNjY0NjQwMjIy", "София Младост", "02/9602059" },
+                    { 2, "София бул. „Околовръстно шосе”", "https://mr-bricolage.bg/medias/ringmall-storefront.png?context=bWFzdGVyfCByaW5nLW1hbGx8MzUwNTU2fGltYWdlL3BuZ3xoYTEvaGQ1LzkxMzUxODIwNTM0MDYvcmluZ21hbGwtc3RvcmVmcm9udC5wbmd8NjIwZDVjMDFlOTAwM2YzZjAyMzcyYzU2MWEyYWIwYWY2MmRhNzcwZWY3NWY3ZGVlNTZjOTU5MTNlY2E1NjczOQ", "София Ринг Мол", "02/4053600" },
+                    { 3, "София бул. „Европа”", "https://mr-bricolage.bg/medias/lulin-front.PNG?context=bWFzdGVyfGx1bGlufDEyNjkzfGltYWdlL3BuZ3xsdWxpbi9oNTkvaDVhLzg4MTQwNDE2OTQyMzgucG5nfDUxZTBlNmE1Y2E0ZTc5MmI3YWQyNWE5ZGZlZjc2ZTFkN2FlOGE2ODkwNGQzOTIyNjIyOGZiNTExODY2M2ViNjU", "София Люлин", "02/9216300" },
+                    { 4, "Перник ул. „Юрий Гагарин”", "https://mr-bricolage.bg/medias/pernik-osnovna.jpg?context=bWFzdGVyfHBlcm5pa3w0MDAwNHxpbWFnZS9qcGVnfGg1ZS9oMGYvOTE2MDgwNTcxMTkwMi9wZXJuaWstb3Nub3ZuYS5qcGd8ZmFhNDAyOThkZmM4MzdmYjY3MDA2MGZiNDIwMWE2ZDc0Yzk3NDJjYWFiMWY5NTk0MWM1ZTJiODIxZjY4NmZjNQ", "Перник", "0884 43 15 94" },
+                    { 5, "Благоевград жк. „Струмско”, ул. „Яне Сандански”", "https://mr-bricolage.bg/medias/blagoevgrad-front.PNG?context=bWFzdGVyfGJsYWdvZXZncmFkfDEwNjUwfGltYWdlL3BuZ3xibGFnb2V2Z3JhZC9oYWMvaDFiLzg4MTQwNDI2MTE3NDIucG5nfGJjOTcxNjgzMGNlNzIxYTBhZmViYzgzNWUyMGMyNDYzNWY3NDY0OTQxZWU5YTU1OTVlNmZlMGY1NmQ5NzAxYTY", "Благоевград", "073/829500" },
+                    { 6, "Пловдив ул. „Македония”", "https://mr-bricolage.bg/medias/banner1-980x460.jpg?context=bWFzdGVyfHBsb3ZkaXYtMnw1OTA5ODN8aW1hZ2UvanBlZ3xwbG92ZGl2LTIvaGVhL2gxMy84ODEzOTgyNjEzNTM0LmpwZ3w1MzQ4MTkyMGQyZTIwOGI3MmFmZjYxMDI2ZDhhYmI2OGRmZTdlYTZjNWI3MTkzZWUzNzg5YTI4YzU3NmI1NTc5", "Пловдив 2", "032/307779" },
+                    { 7, "Пловдив бул. „6 септември”", "https://mr-bricolage.bg/medias/Plovdiv-20-03-facade-2.jpg?context=bWFzdGVyfHBsb3ZkaXYtMXwyMjEzMjF8aW1hZ2UvanBlZ3xwbG92ZGl2LTEvaDNhL2g0Ny84OTQ1NDYxMTY2MTEwLmpwZ3w3ZjFiY2VjNDBlZmRmMTE2ZGRlYWJlYWEyZWMxZGE1NjdmYTg2ZjFiZWNhN2Q0ZDVlZDIyMjg5MmUxYWFkOGJi", "Пловдив 1", "032/605259" },
+                    { 8, "Плевен ул. „Асен Халачев", "https://mr-bricolage.bg/medias/pleven-front.PNG?context=bWFzdGVyfHBsZXZlbnwyMTcxODJ8aW1hZ2UvcG5nfHBsZXZlbi9oNzQvaGE3Lzg4MTQwNDM5ODc5OTgucG5nfGNlNDU2MzNiMTE0YTU3MTQxOGJhNmExY2VjYjRmZGE4OGM0ZTIxNWEyZWM5NmQ1ZjY2MDM2NDAxZWM0Y2JkOGE", "Плевен", "064/884900" },
+                    { 9, "Русе бул. „Липник”", "https://mr-bricolage.bg/medias/ruse-storefront.png?context=bWFzdGVyfHJ1c2V8NjYyMDJ8aW1hZ2UvcG5nfGhmOC9oZDUvOTEzNTE4MjAyMDYzOC9ydXNlLXN0b3JlZnJvbnQucG5nfGMxODBlY2E2ZDMxOGU2OGRkNTljZThiM2Q4OTI4YTRmYmM2MjYzZTgzZGZiZTNkMDJlZWVlYTBhYTcxMzNlMjU", "Русе", "082/887810" },
+                    { 10, "Бургас бул. „Захари Стоянов”", "https://mr-bricolage.bg/medias/burgas-front.PNG?context=bWFzdGVyfGJ1cmdhc3w2NDE3OTZ8aW1hZ2UvcG5nfGJ1cmdhcy9oMDcvaDdiLzg4MTQwNDUwMzY1NzQucG5nfGExM2E3ZmM0NDc0MWQ3MmNkYTRmY2VhNmQ4MDkzNDFjMjYwYmUzZmU5ZDUxNGM2YmY1MTNhOWJjMzI5Y2M4YTI", "Бургас", "056/874760" },
+                    { 11, "Варна жк. Младост, ул. „Вяра”", "https://mr-bricolage.bg/medias/varna-front.PNG?context=bWFzdGVyfHZhcm5hfDE0NzYxNTF8aW1hZ2UvcG5nfHZhcm5hL2hhNi9oZTQvODgxNDA0NTU2MDg2Mi5wbmd8NjYwOWI4OGNhODBjODlmZGYzNjlkNjM1MDI3NTEyZmM4ZjNmOTI5MTVjODRlZWRiYjU4YjcwN2QzNzFlODhiMQ", "Варна", "052/572559" },
+                    { 12, "Добрич Околовръстен път „Добротица”, изхода за Албена", "https://mr-bricolage.bg/medias/dobrich-front.PNG?context=bWFzdGVyfGRvYnJpY2h8Nzc1NTEzfGltYWdlL3BuZ3xkb2JyaWNoL2hjYS9oMDQvODgxNDA0NjA4NTE1MC5wbmd8OWZjMjZmM2RjZTVhNTNlNmFjZWIzNjNjOTZlYzA3YmUyZTIxODBhY2I2NjljMWY0NzM2OWY2ZWE3MmY0OTExYw", "Добрич", "058/651680" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Edges",
                 columns: new[] { "Id", "Height", "Length", "Price" },
                 values: new object[,]
@@ -185,6 +389,50 @@ namespace WoodWorking.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IdentityUserContacts_ContactId",
+                table: "IdentityUserContacts",
+                column: "ContactId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_IdentityUserEdges_EdgeId",
                 table: "IdentityUserEdges",
                 column: "EdgeId");
@@ -203,6 +451,24 @@ namespace WoodWorking.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "IdentityUserContacts");
+
+            migrationBuilder.DropTable(
                 name: "IdentityUserEdges");
 
             migrationBuilder.DropTable(
@@ -215,7 +481,16 @@ namespace WoodWorking.Data.Migrations
                 name: "OrderedMaterials");
 
             migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Contacts");
+
+            migrationBuilder.DropTable(
                 name: "Edges");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Orders");

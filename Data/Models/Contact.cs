@@ -15,5 +15,7 @@ namespace WoodWorking.Data.Models
 
         [Required]
         public string Phone { get; set; } = null!;
+
+        public string? ImageUrl { get; set; }
     }
 }

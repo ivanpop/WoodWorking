@@ -48,84 +48,96 @@ namespace WoodWorking.Data
                     Id = 1,
                     Name = "София Младост",
                     Address = "София бул. „Цариградско шосе”",
-                    Phone = "02/9602059"
+                    Phone = "02/9602059",
+                    ImageUrl = "https://mr-bricolage.bg/medias/mladost-storefront.png?context=bWFzdGVyfG1sYWRvc3R8MTQ5NzE0fGltYWdlL3BuZ3xoNGEvaGQ1LzkxMzUxODIwODYxNzQvbWxhZG9zdC1zdG9yZWZyb250LnBuZ3xlODQxNjU1OTRmNGEyMWM0ZDEzNzZlOTY4ODQ0Mzc3MmE0ZDc2ZWY4MDhlYTJiNmUzOGYwOTFiNjY0NjQwMjIy"
                 },
                 new Contact()
                 {
                     Id = 2,
                     Name = "София Ринг Мол",
                     Address = "София бул. „Околовръстно шосе”",
-                    Phone = "02/4053600"
+                    Phone = "02/4053600",
+                    ImageUrl = "https://mr-bricolage.bg/medias/ringmall-storefront.png?context=bWFzdGVyfCByaW5nLW1hbGx8MzUwNTU2fGltYWdlL3BuZ3xoYTEvaGQ1LzkxMzUxODIwNTM0MDYvcmluZ21hbGwtc3RvcmVmcm9udC5wbmd8NjIwZDVjMDFlOTAwM2YzZjAyMzcyYzU2MWEyYWIwYWY2MmRhNzcwZWY3NWY3ZGVlNTZjOTU5MTNlY2E1NjczOQ"
                 },
                 new Contact()
                 {
                     Id = 3,
-                    Name = "София Ринг Мол",
-                    Address = "София бул. „Околовръстно шосе”",
-                    Phone = "02/9216300"
+                    Name = "София Люлин",
+                    Address = "София бул. „Европа”",
+                    Phone = "02/9216300",
+                    ImageUrl = "https://mr-bricolage.bg/medias/lulin-front.PNG?context=bWFzdGVyfGx1bGlufDEyNjkzfGltYWdlL3BuZ3xsdWxpbi9oNTkvaDVhLzg4MTQwNDE2OTQyMzgucG5nfDUxZTBlNmE1Y2E0ZTc5MmI3YWQyNWE5ZGZlZjc2ZTFkN2FlOGE2ODkwNGQzOTIyNjIyOGZiNTExODY2M2ViNjU"
                 },
                 new Contact()
                 {
                     Id = 4,
                     Name = "Перник",
                     Address = "Перник ул. „Юрий Гагарин”",
-                    Phone = "0884 43 15 94"
+                    Phone = "0884 43 15 94",
+                    ImageUrl = "https://mr-bricolage.bg/medias/pernik-osnovna.jpg?context=bWFzdGVyfHBlcm5pa3w0MDAwNHxpbWFnZS9qcGVnfGg1ZS9oMGYvOTE2MDgwNTcxMTkwMi9wZXJuaWstb3Nub3ZuYS5qcGd8ZmFhNDAyOThkZmM4MzdmYjY3MDA2MGZiNDIwMWE2ZDc0Yzk3NDJjYWFiMWY5NTk0MWM1ZTJiODIxZjY4NmZjNQ"
                 },
                 new Contact()
                 {
                     Id = 5,
                     Name = "Благоевград",
                     Address = "Благоевград жк. „Струмско”, ул. „Яне Сандански”",
-                    Phone = "073/829500"
+                    Phone = "073/829500",
+                    ImageUrl = "https://mr-bricolage.bg/medias/blagoevgrad-front.PNG?context=bWFzdGVyfGJsYWdvZXZncmFkfDEwNjUwfGltYWdlL3BuZ3xibGFnb2V2Z3JhZC9oYWMvaDFiLzg4MTQwNDI2MTE3NDIucG5nfGJjOTcxNjgzMGNlNzIxYTBhZmViYzgzNWUyMGMyNDYzNWY3NDY0OTQxZWU5YTU1OTVlNmZlMGY1NmQ5NzAxYTY"
                 },
                 new Contact()
                 {
                     Id = 6,
                     Name = "Пловдив 2",
                     Address = "Пловдив ул. „Македония”",
-                    Phone = "032/307779"
+                    Phone = "032/307779",
+                    ImageUrl = "https://mr-bricolage.bg/medias/banner1-980x460.jpg?context=bWFzdGVyfHBsb3ZkaXYtMnw1OTA5ODN8aW1hZ2UvanBlZ3xwbG92ZGl2LTIvaGVhL2gxMy84ODEzOTgyNjEzNTM0LmpwZ3w1MzQ4MTkyMGQyZTIwOGI3MmFmZjYxMDI2ZDhhYmI2OGRmZTdlYTZjNWI3MTkzZWUzNzg5YTI4YzU3NmI1NTc5"
                 },
                 new Contact()
                 {
                     Id = 7,
                     Name = "Пловдив 1",
                     Address = "Пловдив бул. „6 септември”",
-                    Phone = "032/605259"
+                    Phone = "032/605259",
+                    ImageUrl = "https://mr-bricolage.bg/medias/Plovdiv-20-03-facade-2.jpg?context=bWFzdGVyfHBsb3ZkaXYtMXwyMjEzMjF8aW1hZ2UvanBlZ3xwbG92ZGl2LTEvaDNhL2g0Ny84OTQ1NDYxMTY2MTEwLmpwZ3w3ZjFiY2VjNDBlZmRmMTE2ZGRlYWJlYWEyZWMxZGE1NjdmYTg2ZjFiZWNhN2Q0ZDVlZDIyMjg5MmUxYWFkOGJi"
                 },
                 new Contact()
                 {
                     Id = 8,
                     Name = "Плевен",
                     Address = "Плевен ул. „Асен Халачев",
-                    Phone = "064/884900"
+                    Phone = "064/884900",
+                    ImageUrl = "https://mr-bricolage.bg/medias/pleven-front.PNG?context=bWFzdGVyfHBsZXZlbnwyMTcxODJ8aW1hZ2UvcG5nfHBsZXZlbi9oNzQvaGE3Lzg4MTQwNDM5ODc5OTgucG5nfGNlNDU2MzNiMTE0YTU3MTQxOGJhNmExY2VjYjRmZGE4OGM0ZTIxNWEyZWM5NmQ1ZjY2MDM2NDAxZWM0Y2JkOGE"
                 },
                 new Contact()
                 {
                     Id = 9,
                     Name = "Русе",
                     Address = "Русе бул. „Липник”",
-                    Phone = "082/887810"
+                    Phone = "082/887810",
+                    ImageUrl = "https://mr-bricolage.bg/medias/ruse-storefront.png?context=bWFzdGVyfHJ1c2V8NjYyMDJ8aW1hZ2UvcG5nfGhmOC9oZDUvOTEzNTE4MjAyMDYzOC9ydXNlLXN0b3JlZnJvbnQucG5nfGMxODBlY2E2ZDMxOGU2OGRkNTljZThiM2Q4OTI4YTRmYmM2MjYzZTgzZGZiZTNkMDJlZWVlYTBhYTcxMzNlMjU"
                 },
                 new Contact()
                 {
                     Id = 10,
                     Name = "Бургас",
                     Address = "Бургас бул. „Захари Стоянов”",
-                    Phone = "056/874760"
+                    Phone = "056/874760",
+                    ImageUrl = "https://mr-bricolage.bg/medias/burgas-front.PNG?context=bWFzdGVyfGJ1cmdhc3w2NDE3OTZ8aW1hZ2UvcG5nfGJ1cmdhcy9oMDcvaDdiLzg4MTQwNDUwMzY1NzQucG5nfGExM2E3ZmM0NDc0MWQ3MmNkYTRmY2VhNmQ4MDkzNDFjMjYwYmUzZmU5ZDUxNGM2YmY1MTNhOWJjMzI5Y2M4YTI"
                 },
                 new Contact()
                 {
                     Id = 11,
                     Name = "Варна",
                     Address = "Варна жк. Младост, ул. „Вяра”",
-                    Phone = "052/572559"
+                    Phone = "052/572559",
+                    ImageUrl = "https://mr-bricolage.bg/medias/varna-front.PNG?context=bWFzdGVyfHZhcm5hfDE0NzYxNTF8aW1hZ2UvcG5nfHZhcm5hL2hhNi9oZTQvODgxNDA0NTU2MDg2Mi5wbmd8NjYwOWI4OGNhODBjODlmZGYzNjlkNjM1MDI3NTEyZmM4ZjNmOTI5MTVjODRlZWRiYjU4YjcwN2QzNzFlODhiMQ"
                 },
                 new Contact()
                 {
                     Id = 12,
                     Name = "Добрич",
                     Address = "Добрич Околовръстен път „Добротица”, изхода за Албена",
-                    Phone = "058/651680"
+                    Phone = "058/651680",
+                    ImageUrl = "https://mr-bricolage.bg/medias/dobrich-front.PNG?context=bWFzdGVyfGRvYnJpY2h8Nzc1NTEzfGltYWdlL3BuZ3xkb2JyaWNoL2hjYS9oMDQvODgxNDA0NjA4NTE1MC5wbmd8OWZjMjZmM2RjZTVhNTNlNmFjZWIzNjNjOTZlYzA3YmUyZTIxODBhY2I2NjljMWY0NzM2OWY2ZWE3MmY0OTExYw"
                 }
                 );
 
