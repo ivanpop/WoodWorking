@@ -7,5 +7,9 @@ namespace WoodWorking.Contracts
         Task<IEnumerable<AllContactsViewModel>> GetAllContactsAsync();
 
         Task AddContactAsync(AddEditContactViewModel model);
+
+        Task<AddEditContactViewModel?> GetContactForEditAsync(int id);
+
+        void EditContactAsync(AddEditContactViewModel model, int id);
     }
 }

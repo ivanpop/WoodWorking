@@ -50,7 +50,7 @@ namespace WoodWorking.Service
 
         public async Task<List<string>> EditEdgeAsync(AddEditEdgeViewModel model, int id)
         {
-            var material = await context.Edges.FindAsync(id);
+            var edge = await context.Edges.FindAsync(id);
 
             List<string> errorMessages = new List<string>();
 
@@ -58,7 +58,7 @@ namespace WoodWorking.Service
             {
                 model.Height = model.Height.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
                 model.Height = model.Height.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                material.Height = Convert.ToDecimal(model.Height);
+                edge.Height = Convert.ToDecimal(model.Height);
             }
             catch (Exception)
             {
@@ -69,7 +69,7 @@ namespace WoodWorking.Service
             {
                 model.Length = model.Length.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
                 model.Length = model.Length.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                material.Length = Convert.ToDecimal(model.Length);
+                edge.Length = Convert.ToDecimal(model.Length);
             }
             catch (Exception)
             {
@@ -80,7 +80,7 @@ namespace WoodWorking.Service
             {
                 model.Price = model.Price.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
                 model.Price = model.Price.Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                material.Price = Convert.ToDecimal(model.Price);
+                edge.Price = Convert.ToDecimal(model.Price);
 
                 await context.SaveChangesAsync();
             }

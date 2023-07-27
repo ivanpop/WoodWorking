@@ -39,5 +39,31 @@ namespace WoodWorking.Service
                     Phone = e.Phone
                 }).ToListAsync();
         }
+
+        public async Task<AddEditContactViewModel?> GetContactForEditAsync(int id)
+        {
+            return await context.Contacts
+                .Where(e => e.Id == id)
+                .Select(e => new AddEditContactViewModel
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    Address = e.Address,
+                    Phone = e.Phone,
+                    ImageUrl = e.ImageUrl
+                }).FirstOrDefaultAsync();
+        }
+
+        public async void EditContactAsync(AddEditContactViewModel model, int id)
+        {
+            var contact = await context.Contacts.FindAsync(id);
+
+            contact!.Name = model.Name;
+            contact.Address = model.Address;
+            contact.Phone = model.Phone;
+            contact.ImageUrl = model.ImageUrl;
+
+            await context.SaveChangesAsync();
+        }
     }
 }
