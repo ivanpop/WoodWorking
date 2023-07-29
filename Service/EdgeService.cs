@@ -147,9 +147,10 @@ namespace WoodWorking.Service
             var edge = await context.Edges.FindAsync(id);
 
             if (edge != null)
+            {
                 context.Edges.Remove(edge);
-
-            await context.SaveChangesAsync();
+                await context.SaveChangesAsync();
+            }
         }
 
         public async Task<AddEditEdgeViewModel?> GetEdgeByIdAsync(int id)

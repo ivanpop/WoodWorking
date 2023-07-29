@@ -66,5 +66,16 @@ namespace WoodWorking.Service
 
             await context.SaveChangesAsync();
         }
+
+        public async Task DeleteContactAsync(int id)
+        {
+            var contact = await context.Contacts.FindAsync(id);
+
+            if (contact != null)
+            {
+                context.Contacts.Remove(contact);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

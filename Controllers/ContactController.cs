@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WoodWorking.Contracts;
 using WoodWorking.Models;
+using WoodWorking.Service;
 
 namespace WoodWorking.Controllers
 {
@@ -59,6 +60,14 @@ namespace WoodWorking.Controllers
                 return View(model);
 
             await contactService.EditContactAsync(model, id);
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await contactService.DeleteContactAsync(id);
 
             return RedirectToAction(nameof(All));
         }
