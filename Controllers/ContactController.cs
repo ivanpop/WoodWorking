@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using WoodWorking.Contracts;
 using WoodWorking.Models;
-using WoodWorking.Service;
 
 namespace WoodWorking.Controllers
 {
@@ -60,7 +58,7 @@ namespace WoodWorking.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            contactService.EditContactAsync(model, id);
+            await contactService.EditContactAsync(model, id);
 
             return RedirectToAction(nameof(All));
         }

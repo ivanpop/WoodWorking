@@ -55,7 +55,7 @@ namespace WoodWorking.Service
                 }).FirstOrDefaultAsync();
         }
 
-        public async void EditContactAsync(AddEditContactViewModel model, int id)
+        public async Task EditContactAsync(AddEditContactViewModel model, int id)
         {
             var contact = await context.Contacts.FindAsync(id);
 

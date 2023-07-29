@@ -10,6 +10,6 @@ namespace WoodWorking.Contracts
 
         Task<AddEditContactViewModel?> GetContactForEditAsync(int id);
 
-        void EditContactAsync(AddEditContactViewModel model, int id);
+        Task EditContactAsync(AddEditContactViewModel model, int id);
     }
 }
