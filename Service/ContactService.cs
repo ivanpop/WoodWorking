@@ -36,7 +36,8 @@ namespace WoodWorking.Service
                     Id = e.Id,
                     Name = e.Name,
                     Address = e.Address,
-                    Phone = e.Phone
+                    Phone = e.Phone,
+                    ImageUrl = e.ImageUrl
                 }).ToListAsync();
         }
 
