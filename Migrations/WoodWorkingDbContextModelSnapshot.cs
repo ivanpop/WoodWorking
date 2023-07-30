@@ -678,6 +678,15 @@ namespace WoodWorking.Migrations
                     b.Property<string>("ClientPhone")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ContactAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPhone")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 

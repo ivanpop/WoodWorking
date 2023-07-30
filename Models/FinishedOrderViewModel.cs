@@ -26,6 +26,12 @@ namespace WoodWorking.Models
 
         public string? ClientPhone { get; set; }
 
+        public string? ContactName { get; set; }
+
+        public string? ContactAddress { get; set; }
+
+        public string? ContactPhone { get; set; }
+
         public ICollection<OrderedMaterial> OrderedMaterials { get; set; } = new List<OrderedMaterial>();
     }
 }
