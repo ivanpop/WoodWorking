@@ -1,0 +1,56 @@
+﻿@model WoodWorking.Models.StoreToContactViewModel
+
+@{
+    ViewData["Title"] = "Асоциране на магазин";
+}
+
+<h1 class="text-center">Асоциация</h1>
+
+<hr />
+<div class="container">
+    <form asp-action="New" method="post">        
+
+        <table class="table border" style="width: 500px; margin:auto;">
+            <thead>
+                <tr>
+                    <th style="width: 60px;">Потребител</th>
+                    <th style="width: 60px;">Магазин</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <select asp-for="@Model.StoreName" class="form-control" />
+                            <option value="0"></option>
+                            @foreach (var store in Model.Stores)
+                            {
+                                <option value="@store">@store</option>
+                            }
+                        </div>
+                    </td>                        
+                    <td>
+                        <div class="form-group">
+                            <select asp-for="@Model.ContactName" class="form-control" />
+                            <option value="0"></option>
+                            @foreach (var contact in Model.Contacts)
+                            {
+                                <option value="@contact">@contact</option>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="mb-3" style="width: 300px; margin:auto;">
+            <input class="btn btn-success mb-2 w-100 p-3 fw-bolw" type="submit" value="Създаване на асоциация" style="font-weight: bold;font-size: larger;" />
+        </div>
+    </form>
+</div>

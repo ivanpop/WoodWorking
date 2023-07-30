@@ -13,5 +13,9 @@ namespace WoodWorking.Contracts
         Task EditContactAsync(AddEditContactViewModel model, int id);
 
         Task DeleteContactAsync(int id);
+
+        Task<List<string>> GetAllStoresForAssociateAsync();
+
+        Task<List<string>> GetAllContactsForAssociateAsync();
     }
 }

@@ -71,5 +71,16 @@ namespace WoodWorking.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Associate()
+        {
+            StoreToContactViewModel viewModel = new StoreToContactViewModel();
+
+            viewModel.Stores = await contactService.GetAllStoresForAssociateAsync();
+            viewModel.Contacts = await contactService.GetAllContactsForAssociateAsync();
+
+            return View(viewModel);
+        }
     }
 }

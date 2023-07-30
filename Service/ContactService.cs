@@ -77,5 +77,9 @@ namespace WoodWorking.Service
                 await context.SaveChangesAsync();
             }
         }
+
+        public async Task<List<string>> GetAllStoresForAssociateAsync() => await context.Users.Select(u => u.UserName).ToListAsync();
+
+        public async Task<List<string>> GetAllContactsForAssociateAsync() => await context.Contacts.Select(c => c.Name).ToListAsync();
     }
 }
