@@ -8,8 +8,7 @@
 
 <hr />
 <div class="container">
-    <form asp-action="New" method="post">        
-
+    <form asp-action="Associate" method="post">
         <table class="table border" style="width: 500px; margin:auto;">
             <thead>
                 <tr>
@@ -22,7 +21,6 @@
                     <td>
                         <div class="form-group">
                             <select asp-for="@Model.StoreName" class="form-control" />
-                            <option value="0"></option>
                             @foreach (var store in Model.Stores)
                             {
                                 <option value="@store">@store</option>
@@ -32,7 +30,6 @@
                     <td>
                         <div class="form-group">
                             <select asp-for="@Model.ContactName" class="form-control" />
-                            <option value="0"></option>
                             @foreach (var contact in Model.Contacts)
                             {
                                 <option value="@contact">@contact</option>

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WoodWorking.Contracts;
 using WoodWorking.Data;
 using WoodWorking.Data.Models;
@@ -81,5 +82,32 @@ namespace WoodWorking.Service
         public async Task<List<string>> GetAllStoresForAssociateAsync() => await context.Users.Select(u => u.UserName).ToListAsync();
 
         public async Task<List<string>> GetAllContactsForAssociateAsync() => await context.Contacts.Select(c => c.Name).ToListAsync();
+
+        public async Task AddAssociationAsync(StoreToContactViewModel model)
+        {
+            IdentityUserContact identityUserContact = new IdentityUserContact();
+
+            identityUserContact.UserId = await context.Users
+                .Where(u => u.UserName == model.StoreName)
+                .Select(u => u.Id)
+                .FirstOrDefaultAsync();
+
+            identityUserContact.ContactId = await context.Contacts
+                .Where(c => c.Name == model.ContactName)
+                .Select(c => c.Id)
+                .FirstOrDefaultAsync();
+
+            var selectedUser = await context.IdentityUserContacts
+                .Where(uc => uc.UserId == identityUserContact.UserId).FirstOrDefaultAsync();
+
+            if (selectedUser != null)
+            {
+                context.IdentityUserContacts.Remove(selectedUser);
+                context.SaveChanges();
+            }
+
+            context.IdentityUserContacts.Add(identityUserContact);
+            await context.SaveChangesAsync();
+        }
     }
 }

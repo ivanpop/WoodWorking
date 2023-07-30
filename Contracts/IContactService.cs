@@ -17,5 +17,7 @@ namespace WoodWorking.Contracts
         Task<List<string>> GetAllStoresForAssociateAsync();
 
         Task<List<string>> GetAllContactsForAssociateAsync();
+
+        Task AddAssociationAsync(StoreToContactViewModel model);
     }
 }
