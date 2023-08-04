@@ -57,10 +57,7 @@ namespace WoodWorking.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add()
-        {
-            return View();
-        }
+        public IActionResult Add() => View();
 
         [HttpPost]
         public async Task<IActionResult> Add(AddEditEdgeViewModel model)

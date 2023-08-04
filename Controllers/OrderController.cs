@@ -50,7 +50,7 @@ namespace WoodWorking.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(int id)
         {
-            FinishedOrderViewModel order = await orderService.GetOrderAsync(id);
+            FinishedOrderViewModel order = await orderService.GetOrderAsync(id) ?? new FinishedOrderViewModel();
 
             if (order == null || order.UserId != userService.GetUserId())
                 return RedirectToAction(nameof(All));

@@ -50,7 +50,7 @@ namespace WoodWorking.Service
 
         public async Task<List<string>> EditEdgeAsync(AddEditEdgeViewModel model, int id)
         {
-            var edge = await context.Edges.FindAsync(id);
+            var edge = await context.Edges.FindAsync(id) ?? new Edge();
 
             List<string> errorMessages = new List<string>();
 
@@ -84,7 +84,7 @@ namespace WoodWorking.Service
 
                 await context.SaveChangesAsync();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 errorMessages.Add("Грешна цена!");
             }
@@ -128,7 +128,7 @@ namespace WoodWorking.Service
 
                 await context.SaveChangesAsync();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 errorMessages.Add("Грешна цена!");
             }

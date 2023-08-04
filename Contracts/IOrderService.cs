@@ -12,7 +12,7 @@ namespace WoodWorking.Contracts
 
         FinishedOrderViewModel ConvertToFinishedOrder(OrderViewModel model);
 
-        Task<FinishedOrderViewModel> GetOrderAsync(int id);
+        Task<FinishedOrderViewModel?> GetOrderAsync(int id);
 
         Task<IEnumerable<AllOrdersViewModel>> AllOrdersByUserAsync(string id);
 

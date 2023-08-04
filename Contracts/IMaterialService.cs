@@ -8,7 +8,7 @@ namespace WoodWorking.Contracts
 
         Task<IEnumerable<AllMaterialsViewModel>> GetAllMaterialsAsync();
 
-        Task<AddEditMaterialViewModel> GetMaterialForEditAsync(int id);
+        Task<AddEditMaterialViewModel?> GetMaterialForEditAsync(int id);
 
         Task<bool> AddMaterialAsync(AddEditMaterialViewModel model);
 
