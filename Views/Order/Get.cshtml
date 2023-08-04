@@ -11,13 +11,20 @@
 
 <hr />
 
-<div class="container" style="font-weight:bold; font-size:larger; line-height:30px;">
+<div id="left-container">
     <div>Име на клиента: @Model.ClientName</div>
     <div>Номер на клиента: @Model.ClientPhone</div>
     <div>Експресна поръчка: @isExpress</div>
     <div>Цена на материалите: @Model.MaterialPrice</div>
     <div>Цена на кантирането: @Model.EdgePrice</div>
     <div>Крайна цена: @Model.TotalPrice</div>
+</div>
+
+<div id="right-container">
+	<img src="~/img/logo.png" />
+    <div>@Model.ContactName</div>
+    <div>@Model.ContactAddress</div>
+    <div>@Model.ContactPhone</div>
 </div>
 
 <br />

@@ -20,10 +20,10 @@ namespace WoodWorking.Contracts
 
         Task<IEnumerable<AllMaterialsViewModel>> GetMaterialsANPFAsync();
 
-        Task<string?> GetContactAddressAsync();
+        string? GetContactAddressAsync();
 
-        Task<string?> GetContactNameAsync();
+        string? GetContactNameAsync();
 
-        Task<string?> GetContactPhoneAsync();
+        string? GetContactPhoneAsync();
     }
 }

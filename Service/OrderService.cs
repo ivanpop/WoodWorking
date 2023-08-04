@@ -31,6 +31,9 @@ namespace WoodWorking.Service
             order.TotalPrice = model.TotalPrice;
             order.UserId = model.UserId;
             order.OrderedMaterials = model.OrderedMaterials;
+            order.ContactName = model.ContactName;
+            order.ContactPhone = model.ContactPhone;
+            order.ContactAddress = model.ContactAddress;
 
             await context.Orders.AddAsync(order);
             await context.SaveChangesAsync();
@@ -74,7 +77,9 @@ namespace WoodWorking.Service
             finishedOrder.UserId = userService.GetUserId();
             finishedOrder.MaterialPrice = model.MaterialPrice;
             finishedOrder.TotalPrice = model.TotalPrice;
-
+            finishedOrder.ContactAddress =  GetContactAddressAsync();
+            finishedOrder.ContactName =  GetContactNameAsync();
+            finishedOrder.ContactPhone =  GetContactPhoneAsync();
 
             foreach (var orderedMaterial in finishedOrder.OrderedMaterials)
             {
@@ -129,7 +134,10 @@ namespace WoodWorking.Service
                     IsExpress = o.IsExpress,
                     MaterialPrice = o.MaterialPrice,
                     TotalPrice = o.TotalPrice,
-                    OrderedMaterials = o.OrderedMaterials
+                    OrderedMaterials = o.OrderedMaterials,
+                    ContactName = o.ContactName,
+                    ContactPhone = o.ContactPhone,
+                    ContactAddress = o.ContactAddress,
                 }).FirstOrDefaultAsync();
         }
 
@@ -166,28 +174,28 @@ namespace WoodWorking.Service
                 }).ToListAsync();
         }
 
-        public async Task<string?> GetContactAddressAsync()
+        public string? GetContactAddressAsync()
         {
-            return await context.IdentityUserContacts
+            return context.IdentityUserContacts
                 .Where(uc => uc.UserId == userService.GetUserId())
                 .Select(c => c.Contact.Address)
-                .FirstOrDefaultAsync();
+                .FirstOrDefault();
         }
 
-        public async Task<string?> GetContactNameAsync()
+        public string? GetContactNameAsync()
         {
-            return await context.IdentityUserContacts
+            return context.IdentityUserContacts
                 .Where(uc => uc.UserId == userService.GetUserId())
                 .Select(c => c.Contact.Name)
-                .FirstOrDefaultAsync();
+                .FirstOrDefault();
         }
 
-        public async Task<string?> GetContactPhoneAsync()
+        public string? GetContactPhoneAsync()
         {
-            return await context.IdentityUserContacts
+            return context.IdentityUserContacts
                 .Where(uc => uc.UserId == userService.GetUserId())
                 .Select(c => c.Contact.Phone)
-                .FirstOrDefaultAsync();
+                .FirstOrDefault();
         }
     }
 }

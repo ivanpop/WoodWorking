@@ -29,10 +29,6 @@ namespace WoodWorking.Controllers
                 orderViewModel.OrderedMaterials.Add(new OrderedMaterial());
             }
 
-            orderViewModel.ContactAddress = await orderService.GetContactAddressAsync();
-            orderViewModel.ContactName = await orderService.GetContactNameAsync();
-            orderViewModel.ContactPhone = await orderService.GetContactPhoneAsync();
-
             orderViewModel.Materials = await orderService.AllMaterialsAsync();
             orderViewModel.Edges = await orderService.GetSelectedEdgesAsync(userService.GetUserId());
 

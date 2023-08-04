@@ -32,3 +32,19 @@ section, section > div > p > a, section > form > div > p > a {
     font-size: 20px;
     text-align: center;
 }
+
+#left-container {
+    font-weight: bold;
+    font-size: larger;
+    line-height: 30px;
+    float: left;
+    width: 500px;
+}
+
+#right-container {
+    font-weight: bold;
+    font-size: larger;
+    line-height: 30px;
+    float: right;
+    width: 350px;
+}
