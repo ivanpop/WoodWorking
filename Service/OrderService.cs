@@ -165,5 +165,29 @@ namespace WoodWorking.Service
                     ANPF = m.ANPF
                 }).ToListAsync();
         }
+
+        public async Task<string?> GetContactAddressAsync()
+        {
+            return await context.IdentityUserContacts
+                .Where(uc => uc.UserId == userService.GetUserId())
+                .Select(c => c.Contact.Address)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<string?> GetContactNameAsync()
+        {
+            return await context.IdentityUserContacts
+                .Where(uc => uc.UserId == userService.GetUserId())
+                .Select(c => c.Contact.Name)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<string?> GetContactPhoneAsync()
+        {
+            return await context.IdentityUserContacts
+                .Where(uc => uc.UserId == userService.GetUserId())
+                .Select(c => c.Contact.Phone)
+                .FirstOrDefaultAsync();
+        }
     }
 }

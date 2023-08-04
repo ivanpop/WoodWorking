@@ -19,5 +19,11 @@ namespace WoodWorking.Contracts
         Task<int> GetIdOfLastOrderAsync();
 
         Task<IEnumerable<AllMaterialsViewModel>> GetMaterialsANPFAsync();
+
+        Task<string?> GetContactAddressAsync();
+
+        Task<string?> GetContactNameAsync();
+
+        Task<string?> GetContactPhoneAsync();
     }
 }
