@@ -80,15 +80,6 @@ using (var scope = app.Services.CreateScope())
         await roleManager.CreateAsync(role);
     }
 
-    if (await roleManager.FindByNameAsync("user") == null)
-    {
-        var role = new IdentityRole();
-        role.Name = "user";
-        role.NormalizedName = "USER";
-
-        await roleManager.CreateAsync(role);
-    }
-
     if (await userManager.FindByEmailAsync("admins@mr-bricolage.bg") == null)
     {
         var user = new IdentityUser();
