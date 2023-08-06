@@ -88,8 +88,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Help">Помощ</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/Identity/Account/Register">Регистрация на нов потребител</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/admin/home/accounts">Акаунти</a>
+                        </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" title="Manage" href="/Identity/Account/Manage">Здравейте, <strong>@User.Identity?.Name!</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <form class="form-inline" action="/Identity/Account/Logout?returnUrl=%2F" method="post">
+                                <button type="submit" class="nav-link btn btn-link text-white">Logout</button>
+                                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8HyciOTHGx1Mg-q-D3e-SyrJElEgqRIC9AlvE4CxH7bFlyUyvsPWneiPv6llTFApws36XfV8oL2ggVdZpgGGTDTjZVbvbdyk3ucvBw1G8exQbBEWSMII7_gG0uWcMODA-L291HiqGNKtrMGSEtG8LTfht5W9GRLW-eNPeSt4iTzJK35rz96lWHdJvCVOhHj0KA">
+                            </form>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
         </nav>

@@ -11,5 +11,10 @@ namespace WoodWorking.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult Accounts()
+        {
+            return View();
+        }
     }
 }
