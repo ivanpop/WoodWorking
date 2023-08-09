@@ -2,6 +2,10 @@ html {
   font-size: 14px;
 }
 
+body {
+    min-width:1450px;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -45,11 +49,11 @@ body {
     border-color: #2baf2b;
 }
 
-    .btn-primary:hover {
-        background-color: white;
-        background-color: #2baf2b;
-        border-color: #2baf2b;
-    }
+.btn-primary:hover {
+    background-color: white;
+    background-color: #2baf2b;
+    border-color: #2baf2b;
+}
 
 .col-4 {
     width: 23%;
@@ -131,4 +135,9 @@ td {
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
+}
+
+#svg {
+    height: 200px;
+    width: calc(100% - 930px);
 }
