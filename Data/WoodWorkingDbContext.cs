@@ -11,6 +11,8 @@ namespace WoodWorking.Data
         public WoodWorkingDbContext(DbContextOptions<WoodWorkingDbContext> options)
             : base(options)
         {
+            if (!Database.IsRelational())
+                Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
